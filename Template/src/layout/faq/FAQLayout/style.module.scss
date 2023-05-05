@@ -1,0 +1,9 @@
+.container {
+    display: block;
+
+    @media screen and (min-width: 1170px) {
+        display: grid;
+        grid-template-columns: minmax(0, 460px) minmax(0, calc(100% - 460px));
+        grid-gap: 60px;
+    }
+}
