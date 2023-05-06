@@ -2,35 +2,35 @@ export const HEADER_LINKS = [
     {
         name: 'Home',
         links: [
-            {name: 'Home', url: '/', isMain: true},
-            {name: 'Home 2', url: '/index2'}
+            { name: 'Home', url: '/', isMain: true },
+            { name: 'Home 2', url: '/index2' }
         ]
     },
     {
         name: 'Explore',
         links: [
-            {name: 'Explore', url: '/explore', isMain: true},
-            {name: 'Explore 2', url: '/explore-grid'},
-            {name: 'Single item', url: '/explore/item'},
-            {name: 'Author', url: '/author'},
+            { name: 'Explore', url: '/explore', isMain: true },
+            { name: 'Explore 2', url: '/explore-grid' },
+            { name: 'Single item', url: '/explore/item' },
+            { name: 'Author', url: '/author' },
         ]
     },
     {
         name: 'Pages',
         links: [
-            {name: 'About', url: '/about'},
-            {name: 'Help center', url: '/faq'},
-            {name: 'Team', url: '/team'},
-            {name: 'Ranking', url: '/ranking'},
-            {name: 'Page 404', url: '/404'},
+            { name: 'About', url: '/about' },
+            { name: 'Help center', url: '/faq' },
+            { name: 'Team', url: '/team' },
+            { name: 'Ranking', url: '/ranking' },
+            { name: 'Page 404', url: '/404' },
         ]
     },
     {
         name: 'Community',
         links: [
-            {name: 'Blog Sidebar', url: '/blog-sidebar'},
-            {name: 'Blog Grid', url: '/blog-grid'},
-            {name: 'Single post', url: '/post'}
+            { name: 'Blog Sidebar', url: '/blog-sidebar' },
+            { name: 'Blog Grid', url: '/blog-grid' },
+            { name: 'Single post', url: '/post' }
         ]
     },
     {
@@ -41,8 +41,8 @@ export const HEADER_LINKS = [
     {
         name: 'Account',
         links: [
-            {name: 'Login', url: '/login'},
-            {name: 'Profile', url: '/profile'},
+            { name: 'Login', url: '/login' },
+            { name: 'Profile', url: '/profile' },
         ]
     }
 ];
@@ -70,47 +70,47 @@ export const FOOTER_LINKS = [
         ]
     },
     {
-        title: 'Resources',
+        title: '고객 지원',
         links: [
             {
-                title: 'Help center',
+                title: '자주하는 질문 FAQ',
                 url: '/faq',
             },
+            // {
+            //     title: 'Activity',
+            //     url: '/activity',
+            // },
             {
-                title: 'Activity',
-                url: '/activity',
-            },
-            {
-                title: 'Ranking',
+                title: '랭킹',
                 url: '/ranking',
             },
-            {
-                title: 'News',
-                url: '/blog-grid',
-            }
+            // {
+            //     title: 'News',
+            //     url: '/blog-grid',
+            // }
         ]
     },
-    {
-        title: 'Company',
-        links: [
-            {
-                title: 'About',
-                url: '/about',
-            },
-            {
-                title: 'Our team',
-                url: '/team',
-            },
-            {
-                title: 'Blog',
-                url: '/blog-sidebar',
-            },
-            {
-                title: 'Contact us',
-                url: '/contacts',
-            }
-        ]
-    }
+    // {
+    //     title: 'Company',
+    //     links: [
+    //         {
+    //             title: 'About',
+    //             url: '/about',
+    //         },
+    //         {
+    //             title: 'Our team',
+    //             url: '/team',
+    //         },
+    //         {
+    //             title: 'Blog',
+    //             url: '/blog-sidebar',
+    //         },
+    //         {
+    //             title: 'Contact us',
+    //             url: '/contacts',
+    //         }
+    //     ]
+    // }
 ];
 
 export const SOCIAL_LINKS = [

@@ -1,11 +1,11 @@
 // components
 import Avatar from '@ui/Avatar';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import CryptoIcon from '@ui/CryptoIcon';
 import Fade from '@mui/material/Fade';
 
 // utils
-import {addZero, formatNumber} from '@utils/helpers';
+import { addZero, formatNumber } from '@utils/helpers';
 
 export const getPeriod = (period, value, average = false, rate = 1) => {
     const yearValue = value.year * rate;
@@ -26,7 +26,7 @@ export const getPeriod = (period, value, average = false, rate = 1) => {
     }
 }
 
-const CellWrapper = ({children}) => {
+const CellWrapper = ({ children }) => {
     return (
         <Fade in={true} timeout={1000}>
             {children}
@@ -34,18 +34,18 @@ const CellWrapper = ({children}) => {
     );
 }
 
-export const CollectionCell = ({value}) => {
+export const CollectionCell = ({ value }) => {
     return (
         <CellWrapper>
             <div className="d-flex align-items-center g-15">
-                <Avatar src={value.img} alt={value.name} isVerified={value.isVerified} size="sm"/>
+                <Avatar src={value.img} alt={value.name} isVerified={value.isVerified} size="sm" />
                 <NavLink to="/author">@{value.name}</NavLink>
             </div>
         </CellWrapper>
     )
 }
 
-export const CryptoCell = ({value, type, period}) => {
+export const CryptoCell = ({ value, type, period }) => {
     const rate = type.value === 'eth' ? 1 : 2866.96;
 
     return (
@@ -54,7 +54,7 @@ export const CryptoCell = ({value, type, period}) => {
                 {
                     value &&
                     <>
-                        <CryptoIcon crypto={type.value}/>
+                        <CryptoIcon crypto={type.value} />
                         {formatNumber(getPeriod(period, value, true, rate))}
                     </>
                 }
@@ -63,24 +63,24 @@ export const CryptoCell = ({value, type, period}) => {
     );
 }
 
-export const PercentCell = ({value, period}) => {
+export const PercentCell = ({ value, period }) => {
     const displayValue = value ? getPeriod(period, value, true) : 0;
 
     return (
         <CellWrapper>
-             <span className={displayValue > 0 ? 'text-accent' : 'text-body'}>
+            <span className={displayValue > 0 ? 'text-accent' : 'text-body'}>
                 {value && `${displayValue > 0 ? '+' : ''}${formatNumber(displayValue)}%`}
-             </span>
+            </span>
         </CellWrapper>
     )
 }
 
-export const TextCell = ({value, period}) => {
+export const TextCell = ({ value, period }) => {
     return (
         <CellWrapper>
-             <span className="text-uppercase">
+            <span className="text-uppercase">
                 {value && formatNumber(getPeriod(period, value))}
-             </span>
+            </span>
         </CellWrapper>
     );
 }
@@ -88,7 +88,7 @@ export const TextCell = ({value, period}) => {
 export const COLUMNS = (period, category, type) => [
     {
         field: 'id',
-        headerName: '#',
+        headerName: '',
         minWidth: 50,
         maxWidth: 90,
         headerAlign: 'center',
@@ -110,7 +110,7 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 200,
         maxWidth: 400,
         flex: 1,
-        renderCell: ({value}) => <CollectionCell value={value}/>
+        renderCell: ({ value }) => <CollectionCell value={value} />
     },
     {
         field: 'volume',
@@ -118,7 +118,7 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({value}) => <CryptoCell value={value} type={type} period={period}/>
+        renderCell: ({ value }) => <CryptoCell value={value} type={type} period={period} />
     },
     {
         field: 'h24',
@@ -126,7 +126,7 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({value}) => <PercentCell value={value} period={period}/>
+        renderCell: ({ value }) => <PercentCell value={value} period={period} />
     },
     {
         field: 'd7',
@@ -134,7 +134,7 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({value}) => <PercentCell value={value} period={period}/>
+        renderCell: ({ value }) => <PercentCell value={value} period={period} />
     },
     {
         field: 'floor',
@@ -142,7 +142,7 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({value}) => <CryptoCell value={value} type={type} period={period}/>
+        renderCell: ({ value }) => <CryptoCell value={value} type={type} period={period} />
     },
     {
         field: 'owners',
@@ -150,7 +150,7 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({value}) => <TextCell value={value} period={period}/>
+        renderCell: ({ value }) => <TextCell value={value} period={period} />
     },
     {
         field: 'items',
@@ -158,26 +158,26 @@ export const COLUMNS = (period, category, type) => [
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({value}) => <TextCell value={value} period={period}/>
+        renderCell: ({ value }) => <TextCell value={value} period={period} />
     }
 ];
 
 export const FILTERS = {
     period: [
-        {value: 'all', label: 'All time'},
-        {value: 'week', label: 'Week'},
-        {value: 'month', label: 'Month'},
-        {value: 'year', label: 'Year'},
+        { value: 'all', label: 'All time' },
+        { value: 'week', label: 'Week' },
+        { value: 'month', label: 'Month' },
+        { value: 'year', label: 'Year' },
     ],
     category: [
-        {value: 'all', label: 'All categories'},
-        {value: 'art', label: 'Art'},
-        {value: 'collectibles', label: 'Collectibles'},
-        {value: 'games', label: 'Games'},
-        {value: 'music', label: 'Music'},
+        { value: 'all', label: 'All categories' },
+        { value: 'art', label: 'Art' },
+        { value: 'collectibles', label: 'Collectibles' },
+        { value: 'games', label: 'Games' },
+        { value: 'music', label: 'Music' },
     ],
     type: [
-        {value: 'eth', label: 'Ethereum'},
-        {value: 'imx', label: 'Immutable X'},
+        { value: 'eth', label: 'Ethereum' },
+        { value: 'imx', label: 'Immutable X' },
     ]
 }

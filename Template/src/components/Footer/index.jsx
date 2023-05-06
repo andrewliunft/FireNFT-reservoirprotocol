@@ -3,23 +3,23 @@ import styles from './style.module.scss';
 
 // components
 import Logo from '@components/Logo';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SubscribeForm from '@components/SubscribeForm';
 
 // utils
-import {memo} from 'react';
+import { memo } from 'react';
 
 // hooks
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 // constants
-import {FOOTER_LINKS, SOCIAL_LINKS} from '@constants/links';
+import { FOOTER_LINKS, SOCIAL_LINKS } from '@constants/links';
 
 const SocialLinks = () => {
     return SOCIAL_LINKS.map((link, index) => (
         <li key={index}>
             <a className="tile tile--filled" href={link.url} target="_blank" rel="noreferrer noopener" aria-label={link.name}>
-                <i className={`icon icon-${link.icon}`}/>
+                <i className={`icon icon-${link.icon}`} />
             </a>
         </li>
     ))
@@ -36,7 +36,7 @@ const FooterNav = () => {
                     item.links.map((item, index) => (
                         <li className="text-bold text-sm" key={index}>
                             <NavLink to={item.url}
-                                  className={location.pathname === item.url  ? styles.active : ''}>
+                                className={location.pathname === item.url ? styles.active : ''}>
                                 {item.title}
                             </NavLink>
                         </li>
@@ -55,26 +55,24 @@ const Footer = () => {
                     <div className={styles.main_block}>
                         <div className="d-flex flex-column g-20">
                             <h4>Stay in the loop</h4>
-                            <SubscribeForm/>
+                            <SubscribeForm />
                         </div>
                         <div className="d-flex flex-column g-20">
-                            <h4>Join the community</h4>
+                            <h4>파이어 고객센터</h4>
                             <ul className="d-flex flex-wrap g-15">
-                                <SocialLinks/>
+                                <SocialLinks />
                             </ul>
                         </div>
                     </div>
                     <div className={styles.main_block}>
                         <div className={styles.main_about}>
-                            <Logo/>
+                            <Logo />
                             <p className={`${styles.text} text-bold`}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident.
+                                파이어는 NFT 전문 회사로서 쉽고 투명한 NFT 블록체인 서비스를 제공합니다.
                             </p>
                         </div>
                         <nav className={styles.main_nav}>
-                            <FooterNav/>
+                            <FooterNav />
                         </nav>
                     </div>
                 </div>

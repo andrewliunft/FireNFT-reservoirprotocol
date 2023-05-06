@@ -16,29 +16,29 @@ const CreateAndSell = () => {
     const data = [
         {
             icon: wallet,
-            title: 'Set up your wallet',
-            text: 'Malesuada pellentesque elit eget gravida cum sociis natoque penatibus. Proin libero nunc consequat interdum.'
+            title: 'NFT 선택',
+            text: '마음에 드는 NFT를 선택하세요. 디지털 아트, 멤버십, 메타버스 땅 까지 여러분이 원하는 NFT를 선택하시면 됩니다.'
         },
         {
             icon: folder,
-            title: 'Create your collection',
-            text: 'Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. Risus nullam eget felis eget nunc lobortis.'
+            title: '파이어 간편 결제 클릭하기 ',
+            text: 'NFT를 선택하셨다면, 파이어 간편 결제를 클릭해서 구매하시면 됩니다.'
         },
         {
             icon: cloud,
-            title: 'Add your NFTs',
-            text: 'Volutpat commodo sed egestas egestas. Mollis aliquam ut porttitor leo a diam sollicitudin tempor.'
+            title: '파이얼 월렛에 추가',
+            text: 'NFT를 개인 지갑에 보관해 주세요. 개인 지갑은 이메일주소와 비밀번호라고 생각하면 됩니다.'
         },
         {
             icon: tags,
-            title: 'List them for sale',
-            text: 'Diam sit amet nisl suscipit adipiscing bibendum est. Porttitor eget dolor morbi non arcu risus quis varius quam.'
+            title: 'NFT 판매하기',
+            text: 'NFT가 보관 되어 있는 지갑을 오픈씨와 블러와 연결해서 타인에게 판매 할 수 있습니다.'
         }
     ];
 
     return (
-        <div>
-            <Ticker text="Create & sell your NFTs" />
+        <section>
+            <Ticker text="쉽고 빠른 NFT 구매. 파이어." />
             <div className="container">
                 <div className={styles.list}>
                     {
@@ -52,7 +52,7 @@ const CreateAndSell = () => {
                     }
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

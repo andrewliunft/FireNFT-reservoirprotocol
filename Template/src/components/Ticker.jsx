@@ -13,11 +13,6 @@ const StyledTicker = styled.div`
     overflow: hidden;
     font-family: var(--heading-font);
     font-weight: 600;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
 
     .icon {
       font-size: 20px;
@@ -27,6 +22,14 @@ const StyledTicker = styled.div`
     &-container {
       gap: 20px;
     }
+  }
+
+  .child {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+    -webkit-text-fill-color: transparent;
   }
 
   &.error {
@@ -69,12 +72,12 @@ const StyledTicker = styled.div`
   }
 `;
 
-const Ticker = ({text, isErrorPage = false}) => {
-    return (
-        <StyledTicker className={isErrorPage ? 'error' : ''}>
-            <Marquee gradient={false} speed={80}>{text}</Marquee>
-        </StyledTicker>
-    )
+const Ticker = ({ text, isErrorPage = false }) => {
+  return (
+    <StyledTicker className={isErrorPage ? 'error' : ''}>
+      <Marquee gradient={false} speed={80}>{text}</Marquee>
+    </StyledTicker >
+  )
 }
 
 export default Ticker
