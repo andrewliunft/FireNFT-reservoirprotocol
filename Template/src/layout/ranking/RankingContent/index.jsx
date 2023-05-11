@@ -13,14 +13,28 @@ import { FILTERS } from '@constants/ranking';
 
 // components
 import CustomSelect from '@ui/CustomSelect';
+
+// data
+import { useCollections } from '@reservoir0x/reservoir-kit-ui';
+
 const Table = lazy(() => import('../Table'));
 const Accordion = lazy(() => import('../Accordion'));
+
 
 const RankingContent = () => {
     const [period, setPeriod] = useState(FILTERS.period[0]);
     const [category, setCategory] = useState(FILTERS.category[0]);
     const [type, setType] = useState(FILTERS.type[0]);
     const isAccordion = useWindowSize().width < 1024;
+
+    let collectionQuery = {
+        limit: 10,
+        sortBy: period.value,
+        includeTopBid: true,
+    }
+
+    const { data, isValidating } = useCollections(collectionQuery, { fallbackData: [] });
+
     return (
         <div className="section mt-0">
             <div className="container d-grid g-30">

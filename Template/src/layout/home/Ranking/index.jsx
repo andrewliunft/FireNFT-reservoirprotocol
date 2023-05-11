@@ -23,25 +23,47 @@ import { memo, useState } from 'react';
 import ranking from '@db/ranking';
 
 // data
-import { useCollections } from '@reservoir0x/reservoir-kit-ui'
-
-
+import { useCollections } from '@reservoir0x/reservoir-kit-ui';
 
 const Ranking = ({ period, category, type }) => {
     const dataByCategory = category.value === 'all' ? ranking : ranking.filter(item => item.categories && item.categories.includes(category.value));
 
     const [sortByTime, setSortByTime] = useState('1DayVolume');
 
-    // let collectionQuery: Parameters<typeof useCollections>['0'] = {
-    //     limit: 10,
-    //     sortBy: sortByTime,
-    //     includeTopBid: true,
-    // }
+    let collectionQuery = {
+        limit: 5,
+        sortBy: sortByTime,
+        includeTopBid: true,
+    }
+
+    const { data, isValidating } = useCollections(collectionQuery, { fallbackData: [] });
+
+    let refinedData = data.map(item => {
+        return {
+            id: item.id,
+            collection: {
+                id: item.id,
+                name: item.name,
+                img: item.image,
+                isVerified: item.openseaVerificationStatus,
+            },
+            volume: {
+                day: item.volume['1day'],
+                week: item.volume['7day'],
+                month: item.volume['30day'],
+            },
+            floor: {
+                day: item.floorSale['1day'],
+                week: item.floorSale['7day'],
+                month: item.floorSale['30day'],
+            }
+        }
+    })
 
     const tabs = [
         {
             label: '인기 급상승', key: 'top', children: <StyledTable
-                rows={dataByCategory}
+                rows={refinedData}
                 columns={COLUMNS(period, category, type)}
                 pageSize={5}
                 disableSelectionOnClick
@@ -52,11 +74,12 @@ const Ranking = ({ period, category, type }) => {
                 classes={{
                     columnHeader: 'h6',
                 }}
+                loading={isValidating}
             />
         },
         {
             label: '거래량 순', key: 'trending', children: <StyledTable
-                rows={dataByCategory}
+                rows={refinedData}
                 columns={COLUMNS(period, category, type)}
                 pageSize={5}
                 disableSelectionOnClick

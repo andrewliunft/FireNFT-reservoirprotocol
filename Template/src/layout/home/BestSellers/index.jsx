@@ -5,25 +5,25 @@ import styles from './style.module.scss';
 import SectionHeader from '@components/SectionHeader';
 import Avatar from '@ui/Avatar';
 import CustomSelect from '@ui/CustomSelect';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Spring from '@components/Spring';
 
 // hooks
-import {useState} from 'react';
+import { useState } from 'react';
 
 // utils
-import {addZero} from '@utils/helpers';
+import { addZero } from '@utils/helpers';
 
 // data placeholder
 import sellers from '@db/sellers';
 
 const BestSellers = () => {
     const options = [
-        {value: 'default', label: 'Default sorting'},
-        {value: 'az', label: 'A - Z'},
-        {value: 'za', label: 'Z - A'},
-        {value: 'low', label: 'Highest income'},
-        {value: 'high', label: 'Lowest income'}
+        { value: 'default', label: 'Default sorting' },
+        { value: 'az', label: 'A - Z' },
+        { value: 'za', label: 'Z - A' },
+        { value: 'low', label: 'Highest income' },
+        { value: 'high', label: 'Lowest income' }
     ];
     const [selected, setSelected] = useState(options[0]);
 
@@ -46,7 +46,7 @@ const BestSellers = () => {
         <section>
             <div className="container">
                 <SectionHeader title="Best Sellers">
-                    <CustomSelect options={options} selected={selected} setSelected={setSelected}/>
+                    <CustomSelect options={options} selected={selected} setSelected={setSelected} />
                 </SectionHeader>
                 <div className={styles.grid}>
                     {
@@ -55,10 +55,10 @@ const BestSellers = () => {
                                 <div className={`${styles.seller} border-hover border-hover--horizontal bg-primary`}>
                                     <span className="seller_index text-sm">{addZero(index + 1)}</span>
                                     <Avatar src={seller.avatar} alt={seller.nickname} size="sm"
-                                            isVerified={seller.isVerified}/>
+                                        isVerified={seller.isVerified} />
                                     <div className="seller-info d-flex flex-column">
                                         <NavLink className="text-sm text-bold text-light text-overflow link-hover"
-                                              to="/author">
+                                            to="/author">
                                             @{seller.nickname}
                                         </NavLink>
                                         <span className="text-sm">

@@ -9,28 +9,28 @@ import StickyFilterBar from '@ui/StickyFilterBar';
 import NothingFound from '@components/NothingFound';
 
 // constants
-import {SORTING_OPTIONS} from '@constants/explore';
+import { SORTING_OPTIONS } from '@constants/explore';
 
 // hooks
-import {useWindowSize} from 'react-use';
+import { useWindowSize } from 'react-use';
 import usePagination from '@hooks/usePagination';
-import {useExploreContext} from '@contexts/exploreContext';
+import { useExploreContext } from '@contexts/exploreContext';
 
 const Items = () => {
-    const {sortedItems, sort, setSort} = useExploreContext();
-    const pagination = usePagination(sortedItems, 12);
+    const { tokens, sortedItems, sort, setSort } = useExploreContext();
+    const pagination = usePagination(tokens, 12);
     const isTablet = useWindowSize().width < 1024;
 
     return (
         <div className="d-flex flex-column g-20">
             <div className="d-flex flex-wrap align-items-center justify-content-between g-10" ref={pagination.containerRef}>
-                {isTablet && <StickyFilterBar bottom="#items"/>}
+                {isTablet && <StickyFilterBar bottom="#items" />}
                 <span className="text-sm">{pagination.showingOf()}</span>
                 <CustomSelect options={SORTING_OPTIONS} selected={sort} setSelected={setSort} variant="minimal" />
             </div>
             <div>
                 {
-                    sortedItems.length > 0 ?
+                    tokens.length > 0 ?
                         <ItemsGrid className={styles.grid} items={pagination.currentItems()} />
                         :
                         <NothingFound />

@@ -1,18 +1,25 @@
-import {createContext, useState, useContext} from 'react';
+import { createContext, useState, useContext } from 'react';
 import all_items from '@db/all_items';
-import {SORTING_OPTIONS, CRYPTO_CURRENCIES} from '@constants/explore';
+import { SORTING_OPTIONS, CRYPTO_CURRENCIES } from '@constants/explore';
+
+import { useParams } from 'react-router-dom';
+
+import { useDynamicTokens } from '@reservoir0x/reservoir-kit-ui';
 
 export const ExploreContext = createContext(undefined);
 
-export const ExploreContextAPI = ({children}) => {
+export const ExploreContextAPI = ({ children }) => {
     const items = all_items;
     const [categories, setCategories] = useState([]);
     const [statuses, setStatuses] = useState([]);
     const [itemType, setItemType] = useState('');
-    const [priceRange, setPriceRange] = useState({min: '', max: ''});
+    const [priceRange, setPriceRange] = useState({ min: '', max: '' });
     const [sort, setSort] = useState(SORTING_OPTIONS[0]);
     const [cryptoCurrency, setCryptoCurrency] = useState(CRYPTO_CURRENCIES[0]);
     const [applyPriceFilter, setApplyPriceFilter] = useState(false);
+
+    const routeParams = useParams();
+    const { data: tokens, fetchNextPage, isFetchingPage, hasNextPage } = useDynamicTokens({ collection: routeParams.id })
 
     const setChecked = (type, value) => {
         switch (type) {
@@ -55,7 +62,7 @@ export const ExploreContextAPI = ({children}) => {
 
     return (
         <ExploreContext.Provider value={{
-            items,
+            tokens,
             categories,
             setCategories,
             statuses,

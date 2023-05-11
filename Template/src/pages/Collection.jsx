@@ -1,19 +1,20 @@
 // components
 import Title from '@components/Title';
 import SimplePageHeader from '@components/SimplePageHeader';
-import Wrapper from '@layout/explore/Wrapper';
-import Sidebar from '@layout/explore/Sidebar';
-import Items from '@layout/explore/Items';
+import Wrapper from '@layout/collection-detail/Wrapper';
+import Sidebar from '@layout/collection-detail/Sidebar';
+import Items from '@layout/collection-detail/Items';
 
 // context
-import {FilterContextAPI} from '@contexts/filterContext';
-import {ExploreContextAPI} from '@contexts/exploreContext';
+import { FilterContextAPI } from '@contexts/filterContext';
+import { ExploreContextAPI } from '@contexts/exploreContext';
 
-const Explore = () => {
+
+const Collection = () => {
     return (
         <>
-            <Title title="Explore" />
-            <SimplePageHeader title="Explore" />
+            <Title title="Collection" />
+            <SimplePageHeader title="Collection" />
             <main>
                 <ExploreContextAPI>
                     <FilterContextAPI>
@@ -28,4 +29,4 @@ const Explore = () => {
     )
 }
 
-export default Explore
+export default Collection

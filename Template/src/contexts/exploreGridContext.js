@@ -1,17 +1,36 @@
-import {createContext, useState, useContext} from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 import all_items from '@db/all_items';
-import {SORTING_OPTIONS} from '@constants/explore';
+import { SORTING_OPTIONS } from '@constants/explore';
+import { axios } from '@reservoir0x/reservoir-sdk';
+import { useParams } from 'react-router-dom';
 
 export const ExploreGridContext = createContext(undefined);
 
-export const ExploreGridContextAPI = ({children}) => {
+export const ExploreGridContextAPI = ({ children }) => {
+    const params = useParams();
+
     const items = all_items;
+    const [tokens, setTokens] = useState([]);
     const [sort, setSort] = useState(SORTING_OPTIONS[0]);
     const [category, setCategory] = useState(null);
     const [status, setStatus] = useState(null);
     const [type, setType] = useState(null);
     const [priceRange, setPriceRange] = useState(null);
+
+    useEffect(() => {
+        axios.get('https://api.reservoir.tools/search/collections/v2', {
+            headers: {
+                'x-api-key': '9ddd9aee-ed04-5a08-9563-feed4fd9b131'
+            },
+            params: {
+                name: params.query
+            }
+        }).then(res => {
+            setTokens(res.data.collections)
+        })
+            .catch(err => console.log(err));
+    }, [])
 
     const filteredItems = items.filter(item => {
         return (
@@ -47,6 +66,7 @@ export const ExploreGridContextAPI = ({children}) => {
 
     return (
         <ExploreGridContext.Provider value={{
+            tokens,
             sortedItems,
             sort,
             setSort,

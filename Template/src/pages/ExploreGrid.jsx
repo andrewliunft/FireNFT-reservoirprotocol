@@ -1,11 +1,11 @@
 // components
 import Title from '@components/Title';
 import SimplePageHeader from '@components/SimplePageHeader';
-import ExploreGridContent from '@layout/explore-grid';
+import ExploreGridContent from '@layout/collection-list';
 
 // context
-import {ExploreGridContextAPI} from '@contexts/exploreGridContext';
-import {FilterContextAPI} from '@contexts/filterContext';
+import { ExploreGridContextAPI } from '@contexts/exploreGridContext';
+import { FilterContextAPI } from '@contexts/filterContext';
 
 const ExploreGrid = () => {
     return (

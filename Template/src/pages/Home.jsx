@@ -20,7 +20,7 @@ const Home = () => {
             <main>
                 <Hero />
                 {/* <NotableDrops/> */}
-                <Ranking period={{ value: 'all' }} category={{ value: 'all' }} type={{ value: 'eth' }} />
+                <Ranking period={{ value: 'day' }} category={{ value: 'all' }} type={{ value: 'usd' }} />
                 {/* <BestSellers/> */}
                 {/* <Browse/> */}
                 <CreateAndSell />

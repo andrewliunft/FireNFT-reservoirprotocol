@@ -1,21 +1,25 @@
 // styled components
-import {NavLink, NavLinkWrapper, Dropdown, UserLink} from './style';
+import { NavLink, NavLinkWrapper, Dropdown, UserLink } from './style';
 
 // components
 import Tooltip from '@mui/material/Tooltip';
-import {NavLink as Link} from 'react-router-dom';
-import {Fragment} from 'react';
+import { NavLink as Link } from 'react-router-dom';
+import { Fragment } from 'react';
 import GradientBtn from '@ui/GradientBtn';
 
 // hooks
-import {useLocation} from 'react-router-dom';
-import {useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 // utils
 import classNames from 'classnames';
-import {memo} from 'react';
+import { memo } from 'react';
+import { usePaperSdkContext } from '@contexts/paperSdkContext';
 
-const DropdownItem = ({title, children}) => {
+import { UserStatus } from "@paperxyz/embedded-wallet-service-sdk";
+
+
+const DropdownItem = ({ title, children }) => {
     const [open, setOpen] = useState(false);
     const location = useLocation();
 
@@ -25,20 +29,20 @@ const DropdownItem = ({title, children}) => {
 
     return (
         <Tooltip title={title}
-                 open={open}
-                 onOpen={() => setOpen(true)}
-                 onClose={() => setOpen(false)}
-                 PopperProps={{
-                     sx: {
-                         zIndex: 99999,
-                         '& .MuiTooltip-tooltip': {
-                             backgroundColor: 'transparent',
-                             padding: 0,
-                             marginTop: '0 !important',
-                         }
-                     }
-                 }}
-                 placement="bottom">
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
+            PopperProps={{
+                sx: {
+                    zIndex: 99999,
+                    '& .MuiTooltip-tooltip': {
+                        backgroundColor: 'transparent',
+                        padding: 0,
+                        marginTop: '0 !important',
+                    }
+                }
+            }}
+            placement="bottom">
             <NavLinkWrapper>
                 {children}
             </NavLinkWrapper>
@@ -46,8 +50,9 @@ const DropdownItem = ({title, children}) => {
     )
 }
 
-const Horizontal = ({links}) => {
+const Horizontal = ({ links }) => {
     const location = useLocation();
+    const { sdk, user, setUser } = usePaperSdkContext();
 
     return (
         <div className="d-flex align-items-center justify-content-end g-25 flex-1">
@@ -61,8 +66,8 @@ const Horizontal = ({links}) => {
                                     item.links.map(link => (
                                         !link.isMain &&
                                         <Link key={`menu-${link.name}`}
-                                              to={link.url}
-                                              className={classNames('link', {'active': location.pathname === link.url})}>
+                                            to={link.url}
+                                            className={classNames('link', { 'active': location.pathname === link.url })}>
                                             {link.name}
                                         </Link>
                                     ))
@@ -75,47 +80,72 @@ const Horizontal = ({links}) => {
                         item.isSingle ?
                             <Link key={`menu-${item.name}`} to={item.url}>
                                 <NavLink
-                                    className={classNames('main-link', {'active': location.pathname === item.url})}>
+                                    className={classNames('main-link', { 'active': location.pathname === item.url })}>
                                     {item.name}
                                 </NavLink>
                             </Link>
                             :
                             (
                                 item.name !== 'Account' ?
-                                    <div key={`menu-${item.name}`} style={{height: '100%'}}>
-                                        <DropdownItem title={<DropdownMenu/>}>
+                                    <div key={`menu-${item.name}`} style={{ height: '100%' }}>
+                                        <DropdownItem title={<DropdownMenu />}>
                                             {
                                                 mainLink ?
                                                     <Link to={mainLink.url}>
                                                         <NavLink
-                                                            className={classNames('main-link', {'active': location.pathname === mainLink.url})}>
-                                                            {mainLink.name} <i className="icon icon-angle-down"/>
+                                                            className={classNames('main-link', { 'active': location.pathname === mainLink.url })}>
+                                                            {mainLink.name} <i className="icon icon-angle-down" />
                                                         </NavLink>
                                                     </Link>
                                                     :
                                                     <NavLink
-                                                        className={classNames('main-link', {'active': location.pathname === item.url})}>
-                                                        {item.name} <i className="icon icon-angle-down"/>
+                                                        className={classNames('main-link', { 'active': location.pathname === item.url })}>
+                                                        {item.name} <i className="icon icon-angle-down" />
                                                     </NavLink>
                                             }
                                         </DropdownItem>
                                     </div>
                                     :
                                     <Fragment key="wrapper">
-                                        <GradientBtn href="/connect-wallet">
-                                            Connect Wallet
-                                        </GradientBtn>
-                                        <DropdownItem title={<DropdownMenu/>}>
-                                            <UserLink>
-                                                <i className="icon icon-user"/>
-                                            </UserLink>
-                                        </DropdownItem>
+                                        {
+                                            (user !== null && user.status === UserStatus.LOGGED_IN_WALLET_INITIALIZED) ? (
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <UserLink style={{ marginRight: '10px' }}>
+                                                        <i className="icon icon-user" />
+                                                    </UserLink>
+                                                    <text>
+                                                        {user.walletAddress}
+                                                    </text>
+                                                </div>
+                                            ) : (
+                                                <GradientBtn onClick={async () => {
+                                                    await sdk.auth.loginWithPaperModal()
+                                                    const user = await sdk.getUser();
+
+                                                    switch (user.status) {
+                                                        case UserStatus.LOGGED_OUT: {
+                                                            // Call sdk.auth.loginWithPaperModal() to log the user in.
+                                                            console.log("wut");
+                                                            break;
+                                                        }
+                                                        case UserStatus.LOGGED_IN_WALLET_INITIALIZED: {
+                                                            setUser(user);
+                                                            break;
+                                                        }
+                                                        default:
+                                                            break;
+                                                    }
+                                                }}>
+                                                    Connect Wallet
+                                                </GradientBtn>
+                                            )
+                                        }
                                     </Fragment>
                             )
                     )
                 })
             }
-        </div>
+        </div >
     )
 }
 

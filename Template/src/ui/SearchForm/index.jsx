@@ -2,10 +2,12 @@
 import styles from './style.module.scss';
 
 // hooks
-import {useState} from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SearchForm = ({placeholder = 'Search', className, handler}) => {
+const SearchForm = ({ placeholder = 'Search', className, handler }) => {
     const [value, setValue] = useState('');
+    const navigate = useNavigate();
 
     const handleChange = e => {
         setValue(e.target.value);
@@ -17,20 +19,24 @@ const SearchForm = ({placeholder = 'Search', className, handler}) => {
         handler && handler('');
     }
 
+    const HandleSearch = () => {
+        navigate(`/search/${value}`);
+    }
+
     return (
-        <form className={`${styles.form} search-form field bg-tertiary ${className || ''}`}>
+        <form className={`${styles.form} search-form field bg-tertiary ${className || ''}`} onSubmit={HandleSearch}>
             <input className="text-overflow"
-                   type="text"
-                   placeholder={placeholder}
-                   onChange={handleChange}/>
+                type="text"
+                placeholder={placeholder}
+                onChange={handleChange} />
             <button className={`${value.length !== 0 ? 'visible' : ''}`}
-                    type="reset"
-                    aria-label="Reset form"
-                    onClick={handleReset}>
-                <i className="icon icon-xmark"/>
+                type="reset"
+                aria-label="Reset form"
+                onClick={handleReset}>
+                <i className="icon icon-xmark" />
             </button>
             <button type="submit" aria-label="Search">
-                <i className="icon icon-search"/>
+                <i className="icon icon-search" />
             </button>
         </form>
     )
