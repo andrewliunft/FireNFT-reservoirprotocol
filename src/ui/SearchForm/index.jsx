@@ -1,9 +1,14 @@
+import React from 'react';
+
 // styling
 import styles from './style.module.scss';
 
 // hooks
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// utils
+import PropTypes from 'prop-types';
 
 const SearchForm = ({ placeholder = 'Search', className, handler }) => {
     const [value, setValue] = useState('');
@@ -40,6 +45,12 @@ const SearchForm = ({ placeholder = 'Search', className, handler }) => {
             </button>
         </form>
     )
+}
+
+SearchForm.propTypes = {
+    placeholder: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    handler: PropTypes.func,
 }
 
 export default SearchForm

@@ -2,12 +2,12 @@
 import Truncate from 'react-truncate';
 
 // hooks
-import {useState, useEffect} from 'react';
+import { React, useState, useEffect } from 'react';
 
 // utils
 import PropTypes from 'prop-types';
 
-const CollapsedText = ({text, lines = 2, className, withButton = false, width}) => {
+const CollapsedText = ({ text, lines = 2, className, withButton = false, width }) => {
     const [truncated, setTruncated] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -25,23 +25,23 @@ const CollapsedText = ({text, lines = 2, className, withButton = false, width}) 
 
     return (
         <span className={className ? className : ''}>
-           {
-               mounted && (
-                   <Truncate
-                       lines={!expanded && lines}
-                       ellipsis={(
-                           <span>... {
-                               withButton &&
-                               <button className="text-divider" onClick={handleExpand}>Read more</button>}
-                    </span>
-                       )}
-                       onTruncate={() => setTruncated(!truncated)}
-                       width={width}
-                   >
-                       {text}
-                   </Truncate>
-               )
-           }
+            {
+                mounted && (
+                    <Truncate
+                        lines={!expanded && lines}
+                        ellipsis={(
+                            <span>... {
+                                withButton &&
+                                <button className="text-divider" onClick={handleExpand}>Read more</button>}
+                            </span>
+                        )}
+                        onTruncate={() => setTruncated(!truncated)}
+                        width={width}
+                    >
+                        {text}
+                    </Truncate>
+                )
+            }
         </span>
     )
 }
