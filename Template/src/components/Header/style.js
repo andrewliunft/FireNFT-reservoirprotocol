@@ -117,7 +117,7 @@ export const HeaderWrapper = styled(Headroom)`
 
   @media screen and (min-width: 1440px) {
     .search {
-      width: 240px !important;
+      /* width: 240px !important; */
     }
 
     .btn--gradient {

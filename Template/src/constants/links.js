@@ -1,43 +1,43 @@
 export const HEADER_LINKS = [
     {
-        name: 'Home',
+        name: '홈',
         links: [
-            { name: 'Home', url: '/', isMain: true },
-            { name: 'Home 2', url: '/index2' }
+            { name: '홈', url: '/', isMain: true },
+            // { name: 'Home 2', url: '/index2' }
         ]
     },
     {
-        name: 'Explore',
+        name: 'NFT 컬렉션',
         links: [
-            { name: 'Explore', url: '/explore', isMain: true },
-            { name: 'Explore 2', url: '/explore-grid' },
-            { name: 'Single item', url: '/explore/item' },
-            { name: 'Author', url: '/author' },
+            { name: '트렌딩 NFT', url: '/ranking' },
+            { name: 'NFT 컬렉션 모아보기', url: '/ranking' },
+            // { name: 'Single item', url: '/explore/item' },
+            // { name: 'Author', url: '/author' },
         ]
     },
     {
-        name: 'Pages',
+        name: '고객센터',
         links: [
-            { name: 'About', url: '/about' },
-            { name: 'Help center', url: '/faq' },
-            { name: 'Team', url: '/team' },
-            { name: 'Ranking', url: '/ranking' },
-            { name: 'Page 404', url: '/404' },
+            { name: '1:1 질문', url: '/about' },
+            { name: '자주하는 질문 FAQ', url: '/faq' },
+            // { name: 'Team', url: '/team' },
+            // { name: 'Ranking', url: '/ranking' },
+            // { name: 'Page 404', url: '/404' },
         ]
     },
-    {
-        name: 'Community',
-        links: [
-            { name: 'Blog Sidebar', url: '/blog-sidebar' },
-            { name: 'Blog Grid', url: '/blog-grid' },
-            { name: 'Single post', url: '/post' }
-        ]
-    },
-    {
-        name: 'Contacts',
-        isSingle: true,
-        url: '/contacts'
-    },
+    // {
+    //     name: 'Community',
+    //     links: [
+    //         { name: 'Blog Sidebar', url: '/blog-sidebar' },
+    //         { name: 'Blog Grid', url: '/blog-grid' },
+    //         { name: 'Single post', url: '/post' }
+    //     ]
+    // },
+    // {
+    //     name: 'Contacts',
+    //     isSingle: true,
+    //     url: '/contacts'
+    // },
     {
         name: 'Account',
         links: [
@@ -55,14 +55,14 @@ export const FOOTER_LINKS = [
                 title: 'Profile',
                 url: '/login',
             },
-            {
-                title: 'My Collections',
-                url: '/author',
-            },
-            {
-                title: 'Connect wallet',
-                url: '/connect-wallet',
-            },
+            // {
+            //     title: 'My Collections',
+            //     url: '/author',
+            // },
+            // {
+            //     title: 'Connect wallet',
+            //     url: '/connect-wallet',
+            // },
             {
                 title: 'Settings',
                 url: '/profile',
