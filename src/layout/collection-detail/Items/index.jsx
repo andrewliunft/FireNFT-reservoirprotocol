@@ -17,7 +17,7 @@ import usePagination from '@hooks/usePagination';
 import { useExploreContext } from '@contexts/exploreContext';
 
 const Items = () => {
-    const { tokens, sortedItems, sort, setSort } = useExploreContext();
+    const { tokens, sort, setSort } = useExploreContext();
     const pagination = usePagination(tokens, 12);
     const isTablet = useWindowSize().width < 1024;
 

@@ -14,7 +14,7 @@ import { useState } from 'react';
 
 // utils
 import PropTypes from 'prop-types';
-import SectionHeader from '@components/SectionHeader';
+// import SectionHeader from '@components/SectionHeader';
 
 const StyledTabsList = styled(TabsList)`
   margin-bottom: 20px;

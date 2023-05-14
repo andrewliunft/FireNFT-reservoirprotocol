@@ -2,7 +2,7 @@
 import Truncate from 'react-truncate';
 
 // hooks
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // utils
 import PropTypes from 'prop-types';

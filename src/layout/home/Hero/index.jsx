@@ -45,7 +45,7 @@ const Hero = () => {
                             horizontalClass: styles.pagination
                         }}>
                         {
-                            hero.map((item, index) => (
+                            hero.map((item) => (
                                 <SwiperSlide key={item.id}>
                                     <div className="d-flex flex-column g-30">
                                         <div>

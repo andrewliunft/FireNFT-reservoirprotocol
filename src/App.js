@@ -1,5 +1,3 @@
-import React from 'react';
-
 // GA
 import ReactGA from 'react-ga4';
 

@@ -1,10 +1,10 @@
 // components
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // hooks
-import {useEffect, useState} from 'react';
-import {useLocation} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // utils
 import classNames from 'classnames';
@@ -30,15 +30,16 @@ const BreadcrumbsNav = () => {
             textTransform: 'capitalize',
             '& .MuiBreadcrumbs-separator': {
                 color: 'var(--accent)',
-            }}}>
+            }
+        }}>
             {
-                breadcrumbs.map((item, index) => (
+                breadcrumbs.map((item) => (
                     <NavLink className={classNames('text-bold link-hover', {
                         'text-accent disabled': item.path === location.pathname,
                         'text-uppercase': item.name === 'faq',
                     })}
-                          key={item.path}
-                          to={item.path}>
+                        key={item.path}
+                        to={item.path}>
                         {item.name}
                     </NavLink>
                 ))

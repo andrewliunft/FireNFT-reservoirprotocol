@@ -1,5 +1,3 @@
-import React from 'react';
-
 // styling
 import styles from './style.module.scss';
 
