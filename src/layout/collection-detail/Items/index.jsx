@@ -15,9 +15,10 @@ import { SORTING_OPTIONS } from '@constants/explore';
 import { useWindowSize } from 'react-use';
 import usePagination from '@hooks/usePagination';
 import { useExploreContext } from '@contexts/exploreContext';
+import LoadingScreen from '@components/LoadingScreen';
 
 const Items = () => {
-    const { tokens, sort, setSort } = useExploreContext();
+    const { tokens, isFetchingPage, sort, setSort } = useExploreContext();
     const pagination = usePagination(tokens, 12);
     const isTablet = useWindowSize().width < 1024;
 
@@ -32,8 +33,8 @@ const Items = () => {
                 {
                     tokens.length > 0 ?
                         <ItemsGrid className={styles.grid} items={pagination.currentItems()} />
-                        :
-                        <NothingFound />
+                        : isFetchingPage ? <LoadingScreen /> :
+                            <NothingFound />
                 }
                 {pagination.maxPage > 1 && <Pagination pagination={pagination} />}
             </div>

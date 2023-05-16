@@ -63,6 +63,7 @@ export const ExploreContextAPI = ({ children }) => {
     return (
         <ExploreContext.Provider value={{
             tokens,
+            isFetchingPage,
             categories,
             setCategories,
             statuses,

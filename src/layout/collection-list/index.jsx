@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 import CustomSelect from '@ui/CustomSelect';
 import Pagination from '@ui/Pagination';
 import NothingFound from '@components/NothingFound';
+import LoadingScreen from '@components/LoadingScreen';
 import CollectionsGrid from '@components/CollectionsGrid/index';
 
 // hooks
@@ -17,6 +18,7 @@ import { CATEGORIES, TYPE, STATUS, SORTING_OPTIONS, PRICE_RANGE } from '@constan
 const ExploreGridContent = () => {
     const {
         tokens,
+        isLoading,
         sort,
         setSort,
         sortedItems,
@@ -31,6 +33,7 @@ const ExploreGridContent = () => {
     } = useExploreGridContext();
     const pagination = usePagination(tokens, 20);
 
+    console.log(isLoading, tokens.length)
     return (
         <div className="section mt-0">
             <div className="container d-flex flex-column g-30" ref={pagination.containerRef}>
@@ -62,8 +65,8 @@ const ExploreGridContent = () => {
                     {
                         tokens.length > 0 ?
                             <CollectionsGrid items={pagination.currentItems()} />
-                            :
-                            <NothingFound />
+                            : isLoading ? <LoadingScreen /> :
+                                <NothingFound />
                     }
                     {pagination.maxPage > 1 && <Pagination pagination={pagination} />}
                 </div>

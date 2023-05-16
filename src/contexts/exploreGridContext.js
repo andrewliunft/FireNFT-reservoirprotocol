@@ -17,6 +17,7 @@ export const ExploreGridContextAPI = ({ children }) => {
     const [status, setStatus] = useState(null);
     const [type, setType] = useState(null);
     const [priceRange, setPriceRange] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios.get('https://api.reservoir.tools/search/collections/v2', {
@@ -28,6 +29,7 @@ export const ExploreGridContextAPI = ({ children }) => {
             }
         }).then(res => {
             setTokens(res.data.collections)
+            setIsLoading(false);
         })
             .catch(err => console.log(err));
     }, [])
@@ -67,6 +69,7 @@ export const ExploreGridContextAPI = ({ children }) => {
     return (
         <ExploreGridContext.Provider value={{
             tokens,
+            isLoading,
             sortedItems,
             sort,
             setSort,

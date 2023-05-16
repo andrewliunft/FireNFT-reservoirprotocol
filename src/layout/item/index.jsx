@@ -125,13 +125,15 @@ const ItemDetails = (token) => {
                             </div>
                         </div>
                     </div> */}
-                    <GradientBtn tag="button" onClick={openBidModal}>FIRE 간편구매</GradientBtn>
+                    <div className={styles.buttons}>
+                        <GradientBtn tag="button" onClick={openBidModal}>FIRE 간편구매</GradientBtn>
+                    </div>
                     <div className="main_tabs">
                         <StyledTabs tabs={tabs} />
                         {/* <div className={styles.buttons}>
-                            <GradientBtn tag="button" onClick={openBidModal}>Buy for 20 ETH</GradientBtn>
-                            <button className="btn btn--outline" onClick={openBidModal}>Place a bid</button>
-                        </div> */}
+                                <GradientBtn tag="button" onClick={openBidModal}>Buy for 20 ETH</GradientBtn>
+                                <button className="btn btn--outline" onClick={openBidModal}>Place a bid</button>
+                            </div> */}
                     </div>
                 </div>
             </div>

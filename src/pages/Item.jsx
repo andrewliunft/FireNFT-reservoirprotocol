@@ -17,8 +17,9 @@ const Item = () => {
     return (
         <>
             <Title title="NFT 상세보기" />
-            <SimplePageHeader title="NFT 상세보기" />
+            {/* <SimplePageHeader title="NFT 상세보기" /> */}
             <main>
+                <div style={{ marginTop: '40px' }} />
                 <ItemDetails token={token} />
             </main>
         </>

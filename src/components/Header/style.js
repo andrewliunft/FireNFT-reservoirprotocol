@@ -70,7 +70,7 @@ export const HeaderWrapper = styled(Headroom)`
       margin: 0 40px;
       position: relative;
 
-      &::before, &::after {
+      /* &::before, &::after {
         content: '';
         position: absolute;
         height: 110px;
@@ -85,7 +85,7 @@ export const HeaderWrapper = styled(Headroom)`
 
       &::after {
         right: 0;
-      }
+      } */
     }
 
     .btn--gradient {

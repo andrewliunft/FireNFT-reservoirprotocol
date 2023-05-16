@@ -1,10 +1,10 @@
 // components
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
-const Title = ({title}) => {
+const Title = ({ title }) => {
     return (
         <Helmet>
-            <title>{title} | Xchain NFT Marketplace React Template</title>
+            <title>{title} | FireNFT</title>
         </Helmet>
     )
 }

@@ -114,7 +114,7 @@ const Horizontal = ({ links }) => {
                                                         <i className="icon icon-user" />
                                                     </UserLink>
                                                     <text>
-                                                        {user.walletAddress}
+                                                        {user.walletAddress.slice(0, 8)}...
                                                     </text>
                                                 </div>
                                             ) : (
