@@ -114,6 +114,7 @@ const Ranking = ({ period, category, type }) => {
                 </Grid>
                 <Grid item xs={6}>
                     <StyledTable
+                        onRowClick={handleRowClick}
                         rows={data.slice(5, 10)}
                         columns={COLUMNS(period, category, type)}
                         disableSelectionOnClick

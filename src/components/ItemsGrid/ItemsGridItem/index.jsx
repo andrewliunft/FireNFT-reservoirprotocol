@@ -12,6 +12,7 @@ import { useBidModalContext } from '@contexts/bidModalContext';
 const ItemsGridItem = ({ item, index }) => {
     const { market, token } = item;
     const { openBidModal } = useBidModalContext();
+    console.log(token)
 
     return (
         <Spring index={index}>
@@ -22,7 +23,7 @@ const ItemsGridItem = ({ item, index }) => {
                 <div className={styles.main}>
                     <div className="d-flex align-items-center justify-content-between g-10">
                         <NavLink className="h6 text-overflow link-hover" to={"/explore/token/" + token.contract + ":" + token.tokenId}>
-                            {token.name}
+                            {token.name || token.tokenId}
                         </NavLink>
                     </div>
                     <div className={`${styles.main_price} text-sm text-bold`}>
