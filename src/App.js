@@ -72,6 +72,15 @@ const App = () => {
     const gaKey = process.env.REACT_APP_PUBLIC_GA;
     gaKey && ReactGA.initialize(gaKey);
 
+    const CHANNEL_ID_PLUGIN_KEY = process.env.REACT_APP_CHANNEL_ID_PLUGIN_KEY;
+    const RESERVOIR_API_KEY = process.env.REACT_APP_RESERVOIR_API_KEY
+
+    // eslint-disable-next-line no-undef
+    ChannelIO('boot', {
+        "pluginKey": CHANNEL_ID_PLUGIN_KEY,
+        "language": 'ko',
+    });
+
     return (
         <ReservoirKitProvider
             options={{
@@ -79,7 +88,7 @@ const App = () => {
                     id: 1,
                     baseApiUrl: 'https://api.reservoir.tools',
                     default: true,
-                    apiKey: "9ddd9aee-ed04-5a08-9563-feed4fd9b131"
+                    apiKey: { RESERVOIR_API_KEY }
                 }],
                 source: "reservoir.market"
             }}>
@@ -87,7 +96,6 @@ const App = () => {
                 <CartProvider>
                     <PaperSdkContextProvider>
                         <AuthAPI>
-
                             <BidModalContextAPI>
                                 <SidebarContextAPI>
                                     <ScrollToTop />
@@ -95,23 +103,23 @@ const App = () => {
                                         <Suspense fallback={<LoadingScreen visible />}>
                                             <Routes>
                                                 <Route path="/" element={<Home />} />
-                                                <Route path="/index2" element={<Home2 />} />
+                                                {/* <Route path="/index2" element={<Home2 />} /> */}
                                                 <Route path="/collection/:id" element={<Collection />} />
                                                 <Route path="/search/:query" element={<ExploreGrid />} />
                                                 <Route path="/explore/token/:id" element={<Item />} />
-                                                <Route path="/author" element={<Author />} />
-                                                <Route path="/profile" element={<Profile />} />
+                                                {/* <Route path="/author" element={<Author />} /> */}
+                                                {/* <Route path="/profile" element={<Profile />} /> */}
                                                 <Route path="/faq" element={<FAQ />} />
                                                 <Route path="/ranking" element={<Ranking />} />
                                                 <Route path="/activity" element={<Activity />} />
-                                                <Route path="/connect-wallet" element={<ConnectWallet />} />
-                                                <Route path="/login" element={<Login />} />
-                                                <Route path="/about" element={<About />} />
-                                                <Route path="/team" element={<Team />} />
-                                                <Route path="/blog-sidebar" element={<BlogSidebar />} />
-                                                <Route path="/blog-grid" element={<BlogGrid />} />
-                                                <Route path="/post" element={<Post />} />
-                                                <Route path="/contacts" element={<Contacts />} />
+                                                {/* <Route path="/connect-wallet" element={<ConnectWallet />} /> */}
+                                                {/* <Route path="/login" element={<Login />} /> */}
+                                                {/* <Route path="/about" element={<About />} /> */}
+                                                {/* <Route path="/team" element={<Team />} /> */}
+                                                {/* <Route path="/blog-sidebar" element={<BlogSidebar />} /> */}
+                                                {/* <Route path="/blog-grid" element={<BlogGrid />} /> */}
+                                                {/* <Route path="/post" element={<Post />} /> */}
+                                                {/* <Route path="/contacts" element={<Contacts />} /> */}
                                                 <Route path="*" element={<PageNotFound />} />
                                             </Routes>
                                         </Suspense>

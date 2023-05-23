@@ -1,7 +1,5 @@
 // components
 import Avatar from '@ui/Avatar';
-import { NavLink } from 'react-router-dom';
-import CryptoIcon from '@ui/CryptoIcon';
 import Fade from '@mui/material/Fade';
 
 // utils
@@ -41,7 +39,7 @@ export const CollectionCell = ({ value }) => {
         <CellWrapper>
             <div className="d-flex align-items-center g-15">
                 <Avatar src={value.img} alt={value.name} isVerified={value.isVerified === 'isVerified'} size="sm" />
-                <NavLink to={"/collection/" + value.id}>{value.name}</NavLink>
+                {value.name}
             </div>
         </CellWrapper>
     )
@@ -96,11 +94,9 @@ export const COLUMNS = (period, category, type) => [
         align: 'center',
         flex: 1,
         renderCell: (params) => {
-            const rowIndex = params.api.getRowIndex(params.id) + 1;
-
             return (
                 <span className="text-accent">
-                    {addZero(rowIndex)}
+                    {params.row.rank}
                 </span>
             )
         }

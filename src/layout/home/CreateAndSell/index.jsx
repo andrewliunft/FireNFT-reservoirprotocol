@@ -11,34 +11,39 @@ import wallet from '@assets/icons/wallet.svg';
 import folder from '@assets/icons/folder.svg';
 import cloud from '@assets/icons/cloud.svg';
 import tags from '@assets/icons/tags.svg';
+import eth from '@assets/icons/eth.svg';
+import imx from '@assets/icons/imx.svg';
+import verified from '@assets/icons/verified.svg';
+import envelope from '@assets/icons/envelope.svg';
+import location from '@assets/icons/location.svg';
 
 const CreateAndSell = () => {
     const data = [
         {
-            icon: wallet,
+            icon: tags,
             title: 'NFT 선택',
-            text: '마음에 드는 NFT를 선택하세요. 디지털 아트, 멤버십, 메타버스 땅 까지 여러분이 원하는 NFT를 선택하시면 됩니다.'
+            text: '디지털 아트, 멤버십, 메타버스 땅 등 구매하고 싶은 NFT를 선택하세요.'
         },
         {
             icon: folder,
             title: '파이어 간편 결제 클릭하기 ',
-            text: 'NFT를 선택하셨다면, 파이어 간편 결제를 클릭해서 구매하시면 됩니다.'
+            text: '구매하고 싶은 NFT 선택 후, 파이어 간편 결제로 구매할 수 있습니다.'
         },
         {
-            icon: cloud,
+            icon: wallet,
             title: '파이얼 월렛에 추가',
-            text: 'NFT를 개인 지갑에 보관해 주세요. 개인 지갑은 이메일주소와 비밀번호라고 생각하면 됩니다.'
+            text: '구매한 NFT는 개인 지갑에 안전하게 보관해주세요. 개인 지갑은 아이디와 같은 역활을 합니다.'
         },
         {
-            icon: tags,
+            icon: location,
             title: 'NFT 판매하기',
-            text: 'NFT가 보관 되어 있는 지갑을 오픈씨와 블러와 연결해서 타인에게 판매 할 수 있습니다.'
+            text: 'Paper 지갑에 보관된 NFT는 OpenSea와 Blur에서 판매할 수 있습니다.'
         }
     ];
 
     return (
         <section>
-            <Ticker text="쉽고 빠른 NFT 구매. 파이어." />
+            <Ticker text="NFT 신용카드 구매. 파이어." />
             <div className="container">
                 <div className={styles.list}>
                     {

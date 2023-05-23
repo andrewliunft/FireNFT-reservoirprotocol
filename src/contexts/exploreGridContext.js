@@ -19,10 +19,13 @@ export const ExploreGridContextAPI = ({ children }) => {
     const [priceRange, setPriceRange] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const RESERVOIR_API_KEY = process.env.REACT_APP_RESERVOIR_API_KEY;
+
     useEffect(() => {
+        console.log("search api called");
         axios.get('https://api.reservoir.tools/search/collections/v2', {
             headers: {
-                'x-api-key': '9ddd9aee-ed04-5a08-9563-feed4fd9b131'
+                'x-api-key': { RESERVOIR_API_KEY }
             },
             params: {
                 name: params.query

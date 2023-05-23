@@ -22,7 +22,11 @@ import { memo } from 'react';
 // constants
 import { HEADER_LINKS } from '@constants/links';
 
-const placeholder = 'Search items, collection or user';
+import { usePaperSdkContext } from '@contexts/paperSdkContext';
+
+import { UserStatus } from "@paperxyz/embedded-wallet-service-sdk";
+
+const placeholder = 'NFT 검색';
 
 const MenuTrigger = ({ handler }) => {
     return (
@@ -52,14 +56,33 @@ const LogoutButton = () => {
 }
 
 const CompactHeaderContent = ({ sidebarHandler, modal, modalHandler }) => {
+    const { sdk, user, setUser } = usePaperSdkContext();
+
     return (
         <div className="d-flex g-10">
             <button className="btn btn--icon" onClick={() => modalHandler(true)} aria-label="Search">
                 <i className="icon icon-search-regular" />
             </button>
-            <NavLink className="btn btn--icon" to="/connect-wallet" aria-label="Connect wallet">
-                <i className="icon icon-wallet-regular" />
-            </NavLink>
+            <GradientBtn onClick={async () => {
+                await sdk.auth.loginWithPaperModal()
+                const user = await sdk.getUser();
+
+                switch (user.status) {
+                    case UserStatus.LOGGED_OUT: {
+                        // Call sdk.auth.loginWithPaperModal() to log the user in.
+                        console.log("wut");
+                        break;
+                    }
+                    case UserStatus.LOGGED_IN_WALLET_INITIALIZED: {
+                        setUser(user);
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }}>
+                로그인
+            </GradientBtn>
             <MenuTrigger handler={sidebarHandler} />
             <StyledModal open={modal} onClose={() => modalHandler(false)}>
                 <SearchForm className="field--outline" placeholder={placeholder} />
@@ -70,13 +93,33 @@ const CompactHeaderContent = ({ sidebarHandler, modal, modalHandler }) => {
 }
 
 const TabletHeaderContent = ({ width, handler }) => {
+    const { sdk, user, setUser } = usePaperSdkContext();
+
     return (
         <div className="main-wrapper d-flex align-items-center justify-content-end">
             <div className="form-wrapper">
                 <SearchForm className="search" placeholder={placeholder} />
             </div>
-            <GradientBtn onClick={() => { }}>
-                Connect Wallet
+            <GradientBtn onClick={async () => {
+
+                await sdk.auth.loginWithPaperModal()
+                const user = await sdk.getUser();
+
+                switch (user.status) {
+                    case UserStatus.LOGGED_OUT: {
+                        // Call sdk.auth.loginWithPaperModal() to log the user in.
+                        console.log("wut");
+                        break;
+                    }
+                    case UserStatus.LOGGED_IN_WALLET_INITIALIZED: {
+                        setUser(user);
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }}>
+                로그인
             </GradientBtn>
             <div className="d-flex g-20">
                 {width < 1440 && <MenuTrigger handler={handler} />}

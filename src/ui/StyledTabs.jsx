@@ -72,20 +72,7 @@ const StyledTabs = ({ tabs }) => {
                 }
             </StyledTabsList>
             <Grid container spacing={10}>
-                <Grid item xs={6}>
-                    {
-                        tabs.map(tab => (
-                            <TabPanel key={`${tab.key}-pane`} value={tab.key}>
-                                <Fade in={activeTab === tab.key} timeout={300}>
-                                    <div>
-                                        {tab.children}
-                                    </div>
-                                </Fade>
-                            </TabPanel>
-                        ))
-                    }
-                </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     {
                         tabs.map(tab => (
                             <TabPanel key={`${tab.key}-pane`} value={tab.key}>

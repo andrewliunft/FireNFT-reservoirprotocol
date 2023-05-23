@@ -41,7 +41,7 @@ const StyledTicker = styled.div`
   @media screen and (min-width: 768px) {
     .marquee {
       font-size: 120px;
-      height: 100px;
+      height: 120px;
 
       .icon {
         font-size: 40px;
@@ -57,7 +57,7 @@ const StyledTicker = styled.div`
   @media screen and (min-width: 1170px) {
     .marquee {
       font-size: 200px;
-      height: 165px;
+      height: 200px;
 
       &-container {
         gap: 40px;

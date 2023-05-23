@@ -136,7 +136,7 @@ const Horizontal = ({ links }) => {
                                                             break;
                                                     }
                                                 }}>
-                                                    Connect Wallet
+                                                    로그인
                                                 </GradientBtn>
                                             )
                                         }

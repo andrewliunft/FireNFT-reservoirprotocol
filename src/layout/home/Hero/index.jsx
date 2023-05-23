@@ -14,9 +14,16 @@ import Spring from '@components/Spring';
 import video from '@assets/home/hero/particles.mp4';
 
 // data placeholder
-import hero from '@db/hero'
+// import hero from '@db/hero'
+import { useHotTokensContext } from '@contexts/hotTokensContext';
 
 const Hero = () => {
+    const { hotTokens, isLoading } = useHotTokensContext();
+
+    if (isLoading) return null;
+
+    hotTokens.map((item, idx) => { console.log(item.sampleImages, item.name) });
+
     return (
         <section className={styles.hero}>
             <video src={video}
@@ -45,24 +52,27 @@ const Hero = () => {
                             horizontalClass: styles.pagination
                         }}>
                         {
-                            hero.map((item) => (
-                                <SwiperSlide key={item.id}>
+                            hotTokens.slice(0, 4).map((item, idx) => (
+                                < SwiperSlide key={idx} >
                                     <div className="d-flex flex-column g-30">
                                         <div>
-                                            <img className="border-10" src={item.image} alt={item.title} />
+                                            <img className="border-10" src={item.sampleImages[0]} alt={item.name} style={{ aspectRatio: '1/1', objectFit: 'cover' }} />
                                         </div>
                                         <div className="d-flex flex-column g-5">
-                                            <NavLink className="h4 link-hover" to="/explore/item" >
-                                                {item.title}
+                                            <NavLink className="h4 link-hover" to={'/collection/' + item.id} >
+                                                {item.name}
                                             </NavLink>
                                             <div className="d-flex align-items-center g-10">
-                                                <Avatar src={item.author.avatar}
+                                                {/* <Avatar src={item.author.avatar}
                                                     isVerified={item.author.isVerified}
                                                     alt={item.author.name}
-                                                    size="xs" />
-                                                <NavLink className="text-sm text-light text-bold link-hover" to="/author">
-                                                    @{item.author.name}
-                                                </NavLink>
+                                                    size="xs" /> */}
+                                                {
+                                                    item.twitterUsername &&
+                                                    <NavLink className="text-sm text-light text-bold link-hover" to={"https://twitter.com/" + item.twitterUsername} target="_blank">
+                                                        @{item.twitterUsername}
+                                                    </NavLink>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +88,7 @@ const Hero = () => {
                         duration={0.5}
                         tag="h1"
                         includeWhiteSpaces>
-                        쉽고 빠른 NFT 구매. 파이어.
+                        NFT 신용카드 구매. 파이어.
                     </AnimatedText>
                     <Spring delay={600}>
                         <p className={styles.main_text}>
@@ -88,15 +98,15 @@ const Hero = () => {
                     </Spring>
                     <div className={styles.main_buttons}>
                         <Spring delay={800}>
-                            <GradientBtn href="/explore">파이어 알아보기</GradientBtn>
+                            <GradientBtn href="/ranking">탑10 인기 NFT</GradientBtn>
                         </Spring>
                         <Spring delay={1000}>
-                            <NavLink className="btn btn--outline" to="/login">NFT 이해하기</NavLink>
+                            <NavLink className="btn btn--outline" to={"https://fire-nft.gitbook.io/firenft/"} target="_blank">파이어 알아보기</NavLink>
                         </Spring>
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
 

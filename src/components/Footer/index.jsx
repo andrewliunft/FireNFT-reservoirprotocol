@@ -54,12 +54,12 @@ const Footer = () => {
                 <div className={styles.main}>
                     <div className={styles.main_block}>
                         <div className="d-flex flex-column g-20">
-                            <h4>Stay in the loop</h4>
+                            <h4>최신 소식 받아보기</h4>
                             <SubscribeForm />
                         </div>
-                        <div className="d-flex flex-column g-20">
-                            <h4>파이어 고객센터</h4>
-                            <ul className="d-flex flex-wrap g-15">
+                        <div className="d-flex flex-column g-20" style={{ height: '100%' }}>
+                            <h4 style={{ color: '#111' }}>.</h4>
+                            <ul className="d-flex flex-wrap g-15" style={{ verticalAlign: 'bottom' }}>
                                 <SocialLinks />
                             </ul>
                         </div>
@@ -68,7 +68,7 @@ const Footer = () => {
                         <div className={styles.main_about}>
                             <Logo />
                             <p className={`${styles.text} text-bold`}>
-                                파이어는 NFT 전문 회사로서 쉽고 투명한 NFT 블록체인 서비스를 제공합니다.
+                                파이어는 신용카드를 사용한 NFT 구매를 지원합니다.
                             </p>
                         </div>
                         <nav className={styles.main_nav}>
@@ -76,7 +76,7 @@ const Footer = () => {
                         </nav>
                     </div>
                 </div>
-                <div className={styles.secondary}>
+                {/* <div className={styles.secondary}>
                     <p className={styles.copyright}>
                         <a href="https://1.envato.market/tf-merkulove" target="_blank" rel="noreferrer noopener">
                             Merkulove
@@ -92,7 +92,7 @@ const Footer = () => {
                             Terms of service
                         </a>
                     </div>
-                </div>
+                </div> */}
             </div>
         </footer>
     )

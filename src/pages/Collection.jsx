@@ -12,20 +12,20 @@ import { ExploreContextAPI } from '@contexts/exploreContext';
 
 const Collection = () => {
     return (
-        <>
-            <Title title="Collection" />
-            <SimplePageHeader title="Collection" />
-            <main>
-                <ExploreContextAPI>
+        <ExploreContextAPI>
+            <>
+                <Title title="Collection" />
+                <SimplePageHeader title="Collection" />
+                <main>
                     <FilterContextAPI>
                         <Wrapper>
                             <Sidebar />
                             <Items />
                         </Wrapper>
                     </FilterContextAPI>
-                </ExploreContextAPI>
-            </main>
-        </>
+                </main>
+            </>
+        </ExploreContextAPI>
     )
 }
 

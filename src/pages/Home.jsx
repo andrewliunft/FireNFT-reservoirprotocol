@@ -4,6 +4,7 @@ import { lazy } from 'react';
 // components
 import Title from '@components/Title';
 import Hero from '@layout/home/Hero';
+import { HotTokensContextAPI } from '@contexts/hotTokensContext';
 // const NotableDrops = lazy(() => import('@layout/home/NotableDrops'));
 // const BestSellers = lazy(() => import('@layout/home/BestSellers'));
 // const Browse = lazy(() => import('@layout/home/Browse'));
@@ -17,16 +18,18 @@ const Home = () => {
     return (
         <>
             <Title title="Home" />
-            <main>
-                <Hero />
-                {/* <NotableDrops/> */}
-                <Ranking period={{ value: 'day' }} category={{ value: 'all' }} type={{ value: 'usd' }} />
-                {/* <BestSellers/> */}
-                {/* <Browse/> */}
-                <CreateAndSell />
-                {/* <Presentation/> */}
-                {/* <Blog/> */}
-            </main>
+            <HotTokensContextAPI>
+                <main>
+                    <Hero />
+                    {/* <NotableDrops/> */}
+                    <Ranking period={{ value: 'day' }} category={{ value: 'all' }} type={{ value: 'usd' }} />
+                    {/* <BestSellers/> */}
+                    {/* <Browse/> */}
+                    <CreateAndSell />
+                    {/* <Presentation/> */}
+                    {/* <Blog/> */}
+                </main>
+            </HotTokensContextAPI>
         </>
     )
 }

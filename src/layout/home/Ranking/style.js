@@ -30,6 +30,9 @@ const StyledTable = styled(DataGrid)`
     
     &-row {
       border-bottom: 1px solid var(--divider);
+      :hover {
+        background-color: var(--bg-tertiary) !important;
+      }
     }
     
     &-footerContainer {

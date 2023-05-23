@@ -1,20 +1,20 @@
 export const HEADER_LINKS = [
-    {
-        name: '홈',
-        links: [
-            { name: '홈', url: '/', isMain: true },
-            // { name: 'Home 2', url: '/index2' }
-        ]
-    },
-    {
-        name: 'NFT 컬렉션',
-        links: [
-            { name: '트렌딩 NFT', url: '/ranking' },
-            { name: 'NFT 컬렉션 모아보기', url: '/ranking' },
-            // { name: 'Single item', url: '/explore/item' },
-            // { name: 'Author', url: '/author' },
-        ]
-    },
+    // {
+    //     name: '홈',
+    //     links: [
+    //         { name: '홈', url: '/', isMain: true },
+    //         // { name: 'Home 2', url: '/index2' }
+    //     ]
+    // },
+    // {
+    //     name: 'NFT 컬렉션',
+    //     links: [
+    //         { name: '트렌딩 NFT', url: '/ranking' },
+    //         { name: 'NFT 컬렉션 모아보기', url: '/ranking' },
+    //         // { name: 'Single item', url: '/explore/item' },
+    //         // { name: 'Author', url: '/author' },
+    //     ]
+    // },
     {
         name: '고객센터',
         links: [
@@ -38,37 +38,37 @@ export const HEADER_LINKS = [
     //     isSingle: true,
     //     url: '/contacts'
     // },
-    {
-        name: 'Account',
-        links: [
-            { name: 'Login', url: '/login' },
-            { name: 'Profile', url: '/profile' },
-        ]
-    }
+    // {
+    //     name: 'Account',
+    //     links: [
+    //         { name: 'Login', url: '/login' },
+    //         { name: 'Profile', url: '/profile' },
+    //     ]
+    // }
 ];
 
 export const FOOTER_LINKS = [
-    {
-        title: 'My account',
-        links: [
-            {
-                title: 'Profile',
-                url: '/login',
-            },
-            // {
-            //     title: 'My Collections',
-            //     url: '/author',
-            // },
-            // {
-            //     title: 'Connect wallet',
-            //     url: '/connect-wallet',
-            // },
-            {
-                title: 'Settings',
-                url: '/profile',
-            }
-        ]
-    },
+    // {
+    //     title: 'My account',
+    //     links: [
+    //         // {
+    //         //     title: 'Profile',
+    //         //     url: '/login',
+    //         // },
+    //         // {
+    //         //     title: 'My Collections',
+    //         //     url: '/author',
+    //         // },
+    //         // {
+    //         //     title: 'Connect wallet',
+    //         //     url: '/connect-wallet',
+    //         // },
+    //         // {
+    //         //     title: 'Settings',
+    //         //     url: '/profile',
+    //         // }
+    //     ]
+    // },
     {
         title: '고객 지원',
         links: [
@@ -116,39 +116,39 @@ export const FOOTER_LINKS = [
 export const SOCIAL_LINKS = [
     {
         icon: 'twitter',
-        url: 'https://twitter.com/',
+        url: 'https://twitter.com/firenft_kr',
         name: 'Twitter'
     },
-    {
-        icon: 'facebook',
-        url: 'https://facebook.com/',
-        name: 'Facebook'
-    },
-    {
-        icon: 'instagram',
-        url: 'https://instagram.com/',
-        name: 'Instagram'
-    },
-    {
-        icon: 'youtube',
-        url: 'https://youtube.com/',
-        name: 'Youtube'
-    },
+    // {
+    //     icon: 'facebook',
+    //     url: 'https://facebook.com/',
+    //     name: 'Facebook'
+    // },
+    // {
+    //     icon: 'instagram',
+    //     url: 'https://instagram.com/',
+    //     name: 'Instagram'
+    // },
+    // {
+    //     icon: 'youtube',
+    //     url: 'https://youtube.com/',
+    //     name: 'Youtube'
+    // },
     {
         icon: 'telegram',
-        url: 'https://telegram.com/',
+        url: 'https://t.me/+ZOu__mJoVchkOTVl',
         name: 'Telegram'
     },
-    {
-        icon: 'discord',
-        url: 'https://discord.com/',
-        name: 'Discord'
-    },
-    {
-        icon: 'linkedin',
-        url: 'https://linkedin.com/',
-        name: 'Linkedin'
-    }
+    // {
+    //     icon: 'discord',
+    //     url: 'https://discord.com/',
+    //     name: 'Discord'
+    // },
+    // {
+    //     icon: 'linkedin',
+    //     url: 'https://linkedin.com/',
+    //     name: 'Linkedin'
+    // }
 ];
 
 export const PROFILE_SOCIAL_LINKS = [

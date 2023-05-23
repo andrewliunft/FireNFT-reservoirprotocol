@@ -2,21 +2,21 @@
 import styled from 'styled-components/macro';
 
 // components
-import {StyledAccordionDetails} from '@ui/StyledAccordion';
+import { StyledAccordionDetails } from '@ui/StyledAccordion';
 import Checkbox from '@ui/Checkbox';
-import {StyledAccordionSummary, StyledAccordion} from '@ui/StyledAccordion';
+import { StyledAccordionSummary, StyledAccordion } from '@ui/StyledAccordion';
 import CustomSelect from '@ui/CustomSelect';
 import ResponsiveSidebar from '@ui/ResponsiveSidebar';
-import {Fragment} from 'react';
+import { Fragment } from 'react';
 
 // hooks
-import {useFilterContext} from '@contexts/filterContext';
-import {useWindowSize} from 'react-use';
-import {useExploreContext} from '@contexts/exploreContext';
-import {useForm} from 'react-hook-form';
+import { useFilterContext } from '@contexts/filterContext';
+import { useWindowSize } from 'react-use';
+import { useExploreContext } from '@contexts/exploreContext';
+import { useForm } from 'react-hook-form';
 
 // constants
-import {CRYPTO_CURRENCIES, CATEGORIES, TYPE, STATUS} from '@constants/explore';
+import { CRYPTO_CURRENCIES, CATEGORIES, TYPE, STATUS } from '@constants/explore';
 
 const Details = styled(StyledAccordionDetails)`
   padding-bottom: 30px !important;
@@ -35,11 +35,11 @@ const Sidebar = () => {
         applyPriceFilter,
         setApplyPriceFilter
     } = useExploreContext();
-    const {isSidebarOpen, openSidebar, closeSidebar} = useFilterContext();
-    const {register, handleSubmit, reset} = useForm();
+    const { isSidebarOpen, openSidebar, closeSidebar } = useFilterContext();
+    const { register, handleSubmit, reset } = useForm();
     const isDrawer = useWindowSize().width < 1024;
     const SidebarWrapper = isDrawer ? ResponsiveSidebar : Fragment;
-    const wrapperProps = isDrawer ? {open: isSidebarOpen, onOpen: openSidebar, onClose: closeSidebar} : {};
+    const wrapperProps = isDrawer ? { open: isSidebarOpen, onOpen: openSidebar, onClose: closeSidebar } : {};
 
     const onSubmit = () => {
         setApplyPriceFilter(true);
@@ -48,14 +48,14 @@ const Sidebar = () => {
     const onReset = () => {
         reset();
         setApplyPriceFilter(false);
-        setPriceRange({min: 0, max: 0});
+        setPriceRange({ min: 0, max: 0 });
     }
 
-    const Summary = ({title}) => {
+    const Summary = ({ title }) => {
         return (
             <StyledAccordionSummary>
                 <h5>{title}</h5>
-                <i className="icon icon-angle-down"/>
+                <i className="icon icon-angle-down" />
             </StyledAccordionSummary>
         );
     }
@@ -65,34 +65,34 @@ const Sidebar = () => {
             <div className="sidebar">
                 <div className="sidebar_block pb-0">
                     <StyledAccordion defaultExpanded>
-                        <Summary title="Price range"/>
+                        <Summary title="Price range (₩)" />
                         <Details>
                             <form className="d-flex flex-column g-10" onSubmit={handleSubmit(onSubmit)}>
-                                <CustomSelect className="outline"
-                                              setSelected={setCryptoCurrency}
-                                              options={CRYPTO_CURRENCIES}
-                                              selected={cryptoCurrency}/>
-                                <div className="d-grid g-10" style={{gridTemplateColumns: '1fr 1fr'}}>
+                                {/* <CustomSelect className="outline"
+                                    setSelected={setCryptoCurrency}
+                                    options={CRYPTO_CURRENCIES}
+                                    selected={cryptoCurrency} /> */}
+                                <div className="d-grid g-10" style={{ gridTemplateColumns: '1fr 1fr' }}>
                                     <input type="text"
-                                           className="field field--outline w-100"
-                                           placeholder="0.00"
-                                           {...register('min', {
-                                               required: true,
-                                               min: 0,
-                                               valueAsNumber: true,
-                                               onChange: e => setPriceRange({...priceRange, min: e.target.value}),
-                                               validate: (value) => value <= priceRange.max
-                                           })}/>
+                                        className="field field--outline w-100"
+                                        placeholder="0.00"
+                                        {...register('min', {
+                                            required: true,
+                                            min: 0,
+                                            valueAsNumber: true,
+                                            onChange: e => setPriceRange({ ...priceRange, min: e.target.value }),
+                                            validate: (value) => value <= priceRange.max
+                                        })} />
                                     <input type="text"
-                                           className="field field--outline w-100"
-                                           placeholder="0.00"
-                                           {...register('max', {
-                                               required: true,
-                                               min: 0,
-                                               valueAsNumber: true,
-                                               onChange: e => setPriceRange({...priceRange, max: e.target.value}),
-                                               validate: (value) => value >= priceRange.min,
-                                           })}/>
+                                        className="field field--outline w-100"
+                                        placeholder="0.00"
+                                        {...register('max', {
+                                            required: true,
+                                            min: 0,
+                                            valueAsNumber: true,
+                                            onChange: e => setPriceRange({ ...priceRange, max: e.target.value }),
+                                            validate: (value) => value >= priceRange.min,
+                                        })} />
                                 </div>
                                 {
                                     applyPriceFilter ?
@@ -108,10 +108,14 @@ const Sidebar = () => {
                 </div>
                 <div className="sidebar_block pb-0">
                     <StyledAccordion defaultExpanded>
-                        <Summary title="Categories"/>
+                        <Summary title="Categories" />
                         <Details>
                             <ul className="sidebar_list">
-                                {
+                                <li className="sidebar_list-item"
+                                    key={0}>
+                                    <label>Coming soon...</label>
+                                </li>
+                                {/* {
                                     CATEGORIES.map(category => (
                                         <li className="sidebar_list-item"
                                             key={category.value}>
@@ -121,12 +125,12 @@ const Sidebar = () => {
                                             <label htmlFor={category.value}>{category.label}</label>
                                         </li>
                                     ))
-                                }
+                                } */}
                             </ul>
                         </Details>
                     </StyledAccordion>
                 </div>
-                <div className="sidebar_block pb-0">
+                {/* <div className="sidebar_block pb-0">
                     <StyledAccordion defaultExpanded>
                         <Summary title="Status"/>
                         <Details>
@@ -145,8 +149,8 @@ const Sidebar = () => {
                             </ul>
                         </Details>
                     </StyledAccordion>
-                </div>
-                <div className="sidebar_block pb-0">
+                </div> */}
+                {/* <div className="sidebar_block pb-0">
                     <StyledAccordion defaultExpanded>
                         <Summary title="Type"/>
                         <Details>
@@ -165,7 +169,7 @@ const Sidebar = () => {
                             </ul>
                         </Details>
                     </StyledAccordion>
-                </div>
+                </div> */}
             </div>
         </SidebarWrapper>
     )
