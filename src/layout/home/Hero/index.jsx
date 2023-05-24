@@ -22,8 +22,6 @@ const Hero = () => {
 
     if (isLoading) return null;
 
-    hotTokens.map((item, idx) => { console.log(item.sampleImages, item.name) });
-
     return (
         <section className={styles.hero}>
             <video src={video}
