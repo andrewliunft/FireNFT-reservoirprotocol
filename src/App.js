@@ -94,8 +94,8 @@ const App = () => {
             }}>
             <WagmiConfig client={wagmiClient}>
                 <CartProvider>
-                    <PaperSdkContextProvider>
-                        <AuthAPI>
+                    <AuthAPI>
+                        <PaperSdkContextProvider>
                             <BidModalContextAPI>
                                 <SidebarContextAPI>
                                     <ScrollToTop />
@@ -126,8 +126,8 @@ const App = () => {
                                     </AppLayout>
                                 </SidebarContextAPI>
                             </BidModalContextAPI>
-                        </AuthAPI>
-                    </PaperSdkContextProvider>
+                        </PaperSdkContextProvider>
+                    </AuthAPI>
                 </CartProvider>
             </WagmiConfig>
         </ReservoirKitProvider >

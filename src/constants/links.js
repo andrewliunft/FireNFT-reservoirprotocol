@@ -17,13 +17,15 @@ export const HEADER_LINKS = [
     // },
     {
         name: '고객센터',
-        links: [
-            { name: '1:1 질문', url: '/about' },
-            { name: '자주하는 질문 FAQ', url: '/faq' },
-            // { name: 'Team', url: '/team' },
-            // { name: 'Ranking', url: '/ranking' },
-            // { name: 'Page 404', url: '/404' },
-        ]
+        isSingle: true,
+        url: 'https://fire-nft.gitbook.io/firenft/'
+        // links: [
+        //     { name: '1:1 질문', url: '/about' },
+        //     { name: '자주하는 질문 FAQ', url: '/faq' },
+        // { name: 'Team', url: '/team' },
+        // { name: 'Ranking', url: '/ranking' },
+        // { name: 'Page 404', url: '/404' },
+        // ]
     },
     // {
     //     name: 'Community',
@@ -38,13 +40,13 @@ export const HEADER_LINKS = [
     //     isSingle: true,
     //     url: '/contacts'
     // },
-    // {
-    //     name: 'Account',
-    //     links: [
-    //         { name: 'Login', url: '/login' },
-    //         { name: 'Profile', url: '/profile' },
-    //     ]
-    // }
+    {
+        name: '계정정보',
+        // links: [
+        //     { name: 'Login', url: '/login' },
+        //     { name: 'Profile', url: '/profile' },
+        // ]
+    }
 ];
 
 export const FOOTER_LINKS = [
@@ -74,16 +76,16 @@ export const FOOTER_LINKS = [
         links: [
             {
                 title: '자주하는 질문 FAQ',
-                url: '/faq',
+                url: 'https://fire-nft.gitbook.io/firenft/'
             },
             // {
             //     title: 'Activity',
             //     url: '/activity',
             // },
-            {
-                title: '랭킹',
-                url: '/ranking',
-            },
+            // {
+            //     title: '랭킹',
+            //     url: '/ranking',
+            // },
             // {
             //     title: 'News',
             //     url: '/blog-grid',

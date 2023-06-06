@@ -12,17 +12,21 @@ const Ranking = lazy(() => import('@layout/home/Ranking'));
 const CreateAndSell = lazy(() => import('@layout/home/CreateAndSell'));
 // const Presentation = lazy(() => import('@layout/home/Presentation'));
 // const Blog = lazy(() => import('@layout/home/Blog'));
+import { useRef } from 'react';
 
 
 const Home = () => {
+    const rankingRef = useRef(null)
+    const scrollToRanking = () => rankingRef.current.scrollIntoView({ behavior: 'smooth' })
+
     return (
         <>
             <Title title="Home" />
             <HotTokensContextAPI>
                 <main>
-                    <Hero />
+                    <Hero rankingRef={rankingRef} />
                     {/* <NotableDrops/> */}
-                    <Ranking period={{ value: 'day' }} category={{ value: 'all' }} type={{ value: 'usd' }} />
+                    <Ranking rankingRef={rankingRef} period={{ value: 'day' }} category={{ value: 'all' }} type={{ value: 'krw' }} />
                     {/* <BestSellers/> */}
                     {/* <Browse/> */}
                     <CreateAndSell />

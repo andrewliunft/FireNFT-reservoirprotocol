@@ -61,7 +61,7 @@ const StyledTabs = ({ tabs }) => {
     const [activeTab, setActiveTab] = useState(tabs[0].key);
 
     return (
-        <Tabs value={activeTab} onChange={(e, value) => setActiveTab(value)}>
+        <Tabs value={activeTab} onChange={(e, value) => setActiveTab(value)} >
             <StyledTabsList>
                 {
                     tabs.map(tab => (
@@ -71,12 +71,12 @@ const StyledTabs = ({ tabs }) => {
                     ))
                 }
             </StyledTabsList>
-            <Grid container spacing={10}>
-                <Grid item xs={12}>
+            <Grid container spacing={10} >
+                <Grid item xs={12} >
                     {
                         tabs.map(tab => (
-                            <TabPanel key={`${tab.key}-pane`} value={tab.key}>
-                                <Fade in={activeTab === tab.key} timeout={300}>
+                            <TabPanel key={`${tab.key}-pane`} value={tab.key} style={{ width: '100%', overflowX: 'scroll' }}>
+                                <Fade in={activeTab === tab.key} timeout={300} style={{ minWidth: '1400px' }}>
                                     <div>
                                         {tab.children}
                                     </div>

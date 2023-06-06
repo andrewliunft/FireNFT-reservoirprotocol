@@ -6,6 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { NavLink as Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import GradientBtn from '@ui/GradientBtn';
+import { LogInButton } from '@components/Header'
 
 // hooks
 import { useLocation } from 'react-router-dom';
@@ -17,6 +18,7 @@ import { memo } from 'react';
 import { usePaperSdkContext } from '@contexts/paperSdkContext';
 
 import { UserStatus } from "@paperxyz/embedded-wallet-service-sdk";
+import { useAuth } from '@contexts/authContext';
 
 
 const DropdownItem = ({ title, children }) => {
@@ -53,6 +55,7 @@ const DropdownItem = ({ title, children }) => {
 const Horizontal = ({ links }) => {
     const location = useLocation();
     const { sdk, user, setUser } = usePaperSdkContext();
+    const { isLogged, setIsLogged } = useAuth();
 
     return (
         <div className="d-flex align-items-center justify-content-end g-25 flex-1">
@@ -86,7 +89,7 @@ const Horizontal = ({ links }) => {
                             </Link>
                             :
                             (
-                                item.name !== 'Account' ?
+                                item.name !== '계정정보' ?
                                     <div key={`menu-${item.name}`} style={{ height: '100%' }}>
                                         <DropdownItem title={<DropdownMenu />}>
                                             {
@@ -108,36 +111,22 @@ const Horizontal = ({ links }) => {
                                     :
                                     <Fragment key="wrapper">
                                         {
-                                            (user !== null && user.status === UserStatus.LOGGED_IN_WALLET_INITIALIZED) ? (
+                                            isLogged ? (
                                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                                     <UserLink style={{ marginRight: '10px' }}>
                                                         <i className="icon icon-user" />
                                                     </UserLink>
-                                                    <text>
-                                                        {user.walletAddress.slice(0, 8)}...
-                                                    </text>
+                                                    <div>
+                                                        <div>
+                                                            {user.authDetails.email}
+                                                        </div>
+                                                        <div>
+                                                            {user.walletAddress.slice(0, 8)}...
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             ) : (
-                                                <GradientBtn onClick={async () => {
-                                                    await sdk.auth.loginWithPaperModal()
-                                                    const user = await sdk.getUser();
-
-                                                    switch (user.status) {
-                                                        case UserStatus.LOGGED_OUT: {
-                                                            // Call sdk.auth.loginWithPaperModal() to log the user in.
-                                                            console.log("wut");
-                                                            break;
-                                                        }
-                                                        case UserStatus.LOGGED_IN_WALLET_INITIALIZED: {
-                                                            setUser(user);
-                                                            break;
-                                                        }
-                                                        default:
-                                                            break;
-                                                    }
-                                                }}>
-                                                    로그인
-                                                </GradientBtn>
+                                                (LogInButton(sdk, user, setUser, setIsLogged))
                                             )
                                         }
                                     </Fragment>

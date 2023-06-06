@@ -22,7 +22,6 @@ export const ExploreGridContextAPI = ({ children }) => {
     const RESERVOIR_API_KEY = process.env.REACT_APP_RESERVOIR_API_KEY;
 
     useEffect(() => {
-        console.log("search api called");
         axios.get('https://api.reservoir.tools/search/collections/v2', {
             headers: {
                 'x-api-key': { RESERVOIR_API_KEY }

@@ -28,7 +28,7 @@ import ranking from '@db/ranking';
 import { useCollections } from '@reservoir0x/reservoir-kit-ui';
 import { useHotTokensContext } from '@contexts/hotTokensContext';
 
-const Ranking = ({ period, category, type }) => {
+const Ranking = ({ rankingRef, period, category, type }) => {
     const dataByCategory = category.value === 'all' ? ranking : ranking.filter(item => item.categories && item.categories.includes(category.value));
     const navigate = useNavigate();
     const handleRowClick = (params, event) => {
@@ -41,6 +41,7 @@ const Ranking = ({ period, category, type }) => {
         limit: 10,
         sortBy: sortByTime,
         includeTopBid: true,
+        displayCurrency: '0xdAC17F958D2ee523a2206206994597C13D831ec7' // USDT
     }
 
     const { data, isValidating } = useCollections(collectionQuery, { fallbackData: [] });
@@ -62,9 +63,10 @@ const Ranking = ({ period, category, type }) => {
                 month: item.volume['30day'],
             },
             floor: {
-                day: item.floorSale['1day'],
-                week: item.floorSale['7day'],
-                month: item.floorSale['30day'],
+                day: item.floorAsk.price.amount.usd,
+                // day: item.floorSale['1day'],
+                // week: item.floorSale['7day'],
+                // month: item.floorSale['30day'],
             }
         }
     })
@@ -85,14 +87,40 @@ const Ranking = ({ period, category, type }) => {
                 month: item.volume['30day'],
             },
             floor: {
-                day: item.floorSale['1day'],
-                week: item.floorSale['7day'],
-                month: item.floorSale['30day'],
+                day: item.floorAsk.price.amount.usd,
+                // day: item.floorSale['1day'],
+                // week: item.floorSale['7day'],
+                // month: item.floorSale['30day'],
             }
         }
     })
 
+    const LongRankingTable = (data) => {
+        return (
+            <Grid container spacing={4}>
+                <Grid item xs={6}>
+                    <StyledTable
+                        onRowClick={handleRowClick}
+                        rows={data.slice(5, 10)}
+                        columns={COLUMNS(period, category, type)}
+                        disableSelectionOnClick
+                        disableColumnMenu
+                        hideFooterPagination
+                        hideFooterSelectedRowCount
+                        autoHeight
+                        rowHeight={90}
+                        headerHeight={30}
+                        classes={{
+                            columnHeader: 'h6',
+                        }}
+                        loading={isValidating} />
+                </Grid>
+            </Grid>
+        )
+    }
+
     const RankingTable = (data) => {
+        console.log(window.innerWidth < 768)
         return (
             <Grid container spacing={4}>
                 <Grid item xs={6}>
@@ -144,7 +172,7 @@ const Ranking = ({ period, category, type }) => {
 
     return (
         <section>
-            <div className="container" style={{ width: '100%', minWidth: '1040px', overflowX: 'scroll' }}>
+            <div ref={rankingRef} className="container">
                 <StyledTabs tabs={tabs} />
             </div>
         </section>

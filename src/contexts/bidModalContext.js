@@ -1,11 +1,12 @@
-import {createContext, useState, useContext, useEffect} from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import useScrollLock from '@hooks/useScrollLock';
+import { usePaperSdkContext } from './paperSdkContext';
 
 export const BidModalContext = createContext(undefined);
 
-export const BidModalContextAPI = ({children}) => {
+export const BidModalContextAPI = ({ children }) => {
     const [isBidModalOpen, setIsBidModalOpen] = useState(false);
-    const {lockScroll, unlockScroll} = useScrollLock();
+    const { lockScroll, unlockScroll } = useScrollLock();
 
     useEffect(() => {
         isBidModalOpen ? lockScroll() : unlockScroll();
@@ -21,7 +22,7 @@ export const BidModalContextAPI = ({children}) => {
     const closeBidModal = () => setIsBidModalOpen(false);
 
     return (
-        <BidModalContext.Provider value={{isBidModalOpen, openBidModal, closeBidModal}}>
+        <BidModalContext.Provider value={{ isBidModalOpen, openBidModal, closeBidModal }}>
             {children}
         </BidModalContext.Provider>
     );

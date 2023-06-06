@@ -11,7 +11,6 @@ export const HotTokensContextAPI = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("search api called");
     axios.get('https://api.reservoir.tools/collections/v5', {
       headers: {
         'x-api-key': { RESERVOIR_API_KEY }
@@ -20,7 +19,6 @@ export const HotTokensContextAPI = ({ children }) => {
         collectionsSetId: HOT_COLLECTIONS,
       }
     }).then(res => {
-      console.log("calling search API")
       setHotTokens(res.data.collections)
       setIsLoading(false);
     })

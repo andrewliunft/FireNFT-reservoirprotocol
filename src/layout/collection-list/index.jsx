@@ -33,7 +33,6 @@ const ExploreGridContent = () => {
     } = useExploreGridContext();
     const pagination = usePagination(tokens, 20);
 
-    console.log(isLoading, tokens.length)
     return (
         <div className="section mt-0">
             <div className="container d-flex flex-column g-30" ref={pagination.containerRef}>

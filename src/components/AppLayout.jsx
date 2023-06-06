@@ -5,14 +5,16 @@ import loadable from '@loadable/component'
 const Header = loadable(() => import('@components/Header'));
 const Footer = loadable(() => import('@components/Footer'));
 const BidModal = loadable(() => import('@components/BidModal'));
+const PurchaseModal = loadable(() => import('@components/PurchaseModal'));
 
-const AppLayout = ({children}) => {
+const AppLayout = ({ children }) => {
     return (
         <div>
-            <Header/>
+            <Header />
             {children}
-            <Footer/>
-            <BidModal/>
+            <Footer />
+            <PurchaseModal />
+            <BidModal />
         </div>
     )
 }

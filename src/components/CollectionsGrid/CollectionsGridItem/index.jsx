@@ -10,8 +10,6 @@ import Spring from '@components/Spring';
 import { useBidModalContext } from '@contexts/bidModalContext';
 
 const CollectionsGridItem = ({ item, index }) => {
-    const { openBidModal } = useBidModalContext();
-
     return (
         <Spring index={index}>
             <div className={`${styles.wrapper} border-hover bg-primary`}>
@@ -31,7 +29,7 @@ const CollectionsGridItem = ({ item, index }) => {
                     </div>
                     <div className="d-flex justify-content-between">
                         <button className={`${styles.main_btn} text-accent text-sm link-hover link-hover--invert`}
-                            onClick={openBidModal}>
+                            onClick={console.log('hi')}>
                             Buy now
                         </button>
                     </div>

@@ -17,7 +17,7 @@ import video from '@assets/home/hero/particles.mp4';
 // import hero from '@db/hero'
 import { useHotTokensContext } from '@contexts/hotTokensContext';
 
-const Hero = () => {
+const Hero = ({ rankingRef }) => {
     const { hotTokens, isLoading } = useHotTokensContext();
 
     if (isLoading) return null;
@@ -96,7 +96,10 @@ const Hero = () => {
                     </Spring>
                     <div className={styles.main_buttons}>
                         <Spring delay={800}>
-                            <GradientBtn href="/ranking">탑10 인기 NFT</GradientBtn>
+                            <GradientBtn onClick={() => {
+                                console.log('rankingRef', rankingRef)
+                                rankingRef.current.scrollIntoView({ behavior: 'smooth' })
+                            }}>탑10 인기 NFT</GradientBtn>
                         </Spring>
                         <Spring delay={1000}>
                             <NavLink className="btn btn--outline" to={"https://fire-nft.gitbook.io/firenft/"} target="_blank">파이어 알아보기</NavLink>

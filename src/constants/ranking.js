@@ -1,9 +1,12 @@
 // components
 import Avatar from '@ui/Avatar';
 import Fade from '@mui/material/Fade';
+import CryptoIcon from '@ui/CryptoIcon';
 
 // utils
-import { addZero, formatNumber } from '@utils/helpers';
+import { addZero, formatNumber, formatNumberKorean } from '@utils/helpers';
+
+const USD_TO_KRW = process.env.REACT_APP_USD_TO_KRW;
 
 export const getPeriod = (period, value, average = false, rate = 1) => {
     const dayValue = value.day * rate;
@@ -51,10 +54,9 @@ export const CryptoCell = ({ value, type, period }) => {
         <CellWrapper>
             <div className="d-flex align-items-center justify-content-center g-10 text-uppercase">
                 {
-                    value &&
                     <>
-                        {/* <CryptoIcon crypto={type.value} /> */}
-                        $ {formatNumber(getPeriod(period, value, true, rate))}
+                        <CryptoIcon crypto={type.value} />
+                        {formatNumber(getPeriod(period, value, true, rate))}
                     </>
                 }
             </div>
@@ -62,6 +64,24 @@ export const CryptoCell = ({ value, type, period }) => {
     );
 }
 
+export const FiatCell = ({ value, type, period }) => { // default is USD
+    const rate = type.value === 'krw' ? USD_TO_KRW : 1;
+    return (
+        <CellWrapper>
+            <div className="d-flex align-items-center justify-content-center g-10 text-uppercase">
+                {
+                    value && type.value === 'krw' ?
+                        <>
+                            {formatNumberKorean(getPeriod(period, value, true, rate))} KRW
+                        </> :
+                        <>
+                            {formatNumber(getPeriod(period, value, true, rate))} USD
+                        </>
+                }
+            </div>
+        </CellWrapper>
+    );
+}
 export const PercentCell = ({ value, period }) => {
     const displayValue = value ? getPeriod(period, value, true) : 0;
 
@@ -103,19 +123,27 @@ export const COLUMNS = (period, category, type) => [
     },
     {
         field: 'collection',
-        headerName: 'Collection',
+        headerName: 'NFT 컬렉션',
         minWidth: 200,
         maxWidth: 400,
         flex: 1,
         renderCell: ({ value }) => <CollectionCell value={value} />
     },
     {
-        field: 'volume',
-        headerName: 'Volume',
+        field: 'floor',
+        headerName: '현재 가격',
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
-        renderCell: ({ value }) => <CryptoCell value={value} type={type} period={period} />
+        renderCell: ({ value }) => <FiatCell value={value} type={{ value: 'krw' }} period={period} />
+    },
+    {
+        field: 'volume',
+        headerName: '거래량',
+        minWidth: 80,
+        maxWidth: 160,
+        flex: 1,
+        renderCell: ({ value }) => <CryptoCell value={value} type={{ value: 'eth' }} period={period} />
     },
     // {
     //     field: 'h24',
@@ -133,14 +161,6 @@ export const COLUMNS = (period, category, type) => [
     //     flex: 1,
     //     renderCell: ({ value }) => <PercentCell value={value} period={period} />
     // },
-    {
-        field: 'floor',
-        headerName: 'Floor Price',
-        minWidth: 80,
-        maxWidth: 160,
-        flex: 1,
-        renderCell: ({ value }) => <CryptoCell value={value} type={type} period={period} />
-    },
     // {
     //     field: 'owners',
     //     headerName: 'Owners',
