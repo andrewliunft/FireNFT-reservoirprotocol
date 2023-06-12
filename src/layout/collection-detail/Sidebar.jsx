@@ -63,15 +63,16 @@ const Sidebar = () => {
     return (
         <SidebarWrapper {...wrapperProps}>
             <div className="sidebar">
+                { /*
                 <div className="sidebar_block pb-0">
                     <StyledAccordion defaultExpanded>
                         <Summary title="Price range (₩)" />
                         <Details>
                             <form className="d-flex flex-column g-10" onSubmit={handleSubmit(onSubmit)}>
-                                {/* <CustomSelect className="outline"
+                                <CustomSelect className="outline"
                                     setSelected={setCryptoCurrency}
                                     options={CRYPTO_CURRENCIES}
-                                    selected={cryptoCurrency} /> */}
+                                    selected={cryptoCurrency} />
                                 <div className="d-grid g-10" style={{ gridTemplateColumns: '1fr 1fr' }}>
                                     <input type="text"
                                         className="field field--outline w-100"
@@ -106,9 +107,10 @@ const Sidebar = () => {
                         </Details>
                     </StyledAccordion>
                 </div>
+                            */}
                 <div className="sidebar_block pb-0">
                     <StyledAccordion defaultExpanded>
-                        <Summary title="Categories" />
+                        <Summary title="Filters" />
                         <Details>
                             <ul className="sidebar_list">
                                 <li className="sidebar_list-item"

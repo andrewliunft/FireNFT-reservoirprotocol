@@ -97,7 +97,6 @@ const Hero = ({ rankingRef }) => {
                     <div className={styles.main_buttons}>
                         <Spring delay={800}>
                             <GradientBtn onClick={() => {
-                                console.log('rankingRef', rankingRef)
                                 rankingRef.current.scrollIntoView({ behavior: 'smooth' })
                             }}>탑10 인기 NFT</GradientBtn>
                         </Spring>

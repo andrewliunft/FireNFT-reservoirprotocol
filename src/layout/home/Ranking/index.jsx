@@ -120,7 +120,6 @@ const Ranking = ({ rankingRef, period, category, type }) => {
     }
 
     const RankingTable = (data) => {
-        console.log(window.innerWidth < 768)
         return (
             <Grid container spacing={4}>
                 <Grid item xs={6}>

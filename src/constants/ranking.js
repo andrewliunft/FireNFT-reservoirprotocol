@@ -72,7 +72,7 @@ export const FiatCell = ({ value, type, period }) => { // default is USD
                 {
                     value && type.value === 'krw' ?
                         <>
-                            {formatNumberKorean(getPeriod(period, value, true, rate))} KRW
+                            {formatNumberKorean(getPeriod(period, value, true, rate) * 1.1)} KRW
                         </> :
                         <>
                             {formatNumber(getPeriod(period, value, true, rate))} USD
@@ -131,7 +131,7 @@ export const COLUMNS = (period, category, type) => [
     },
     {
         field: 'floor',
-        headerName: '현재 가격',
+        headerName: '최저가',
         minWidth: 80,
         maxWidth: 160,
         flex: 1,
