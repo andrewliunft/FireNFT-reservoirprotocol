@@ -5,9 +5,7 @@ import styles from './style.module.scss';
 import LazyImage from '@components/LazyImage';
 import { NavLink } from 'react-router-dom';
 import Spring from '@components/Spring';
-
-// hooks
-import { useBidModalContext } from '@contexts/bidModalContext';
+import { USD_TO_KRW, formatNumberKorean } from '@utils/helpers';
 
 const CollectionsGridItem = ({ item, index }) => {
     return (
@@ -18,21 +16,22 @@ const CollectionsGridItem = ({ item, index }) => {
                 </div>
                 <div className={styles.main}>
                     <div className="d-flex align-items-center justify-content-between g-10">
-                        <NavLink className="h6 text-overflow link-hover" to={"/collection/" + item.contract}>
+                        <NavLink className="h6 text-overflow link-hover" to={"/collection/" + item.id}>
                             {item.name}
                         </NavLink>
                     </div>
-                    <div className={`${styles.main_price} text-sm text-bold`}>
-                        <div className="d-flex g-10">
-                            <span>최저가: {item.floorAskPrice?.amount.usd} USD</span>
+                    {item.onSaleCount === '0' ?
+                        <div className={`${styles.main_price} text-sm text-bold`}>
+                            <div className="d-flex g-10">
+                                <span>구매불가</span>
+                            </div>
+                        </div> :
+                        <div className={`${styles.main_price} text-sm text-bold`}>
+                            <div className="d-flex g-10">
+                                <span>최저가: {formatNumberKorean(item.floorAsk?.price.amount.usd * USD_TO_KRW * 1.1)} KRW</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="d-flex justify-content-between">
-                        <button className={`${styles.main_btn} text-accent text-sm link-hover link-hover--invert`}
-                            onClick={console.log('hi')}>
-                            Buy now
-                        </button>
-                    </div>
+                    }
                 </div>
             </div>
         </Spring>

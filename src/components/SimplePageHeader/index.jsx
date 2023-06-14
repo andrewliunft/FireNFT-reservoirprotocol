@@ -17,7 +17,6 @@ const SimplePageHeader = ({ title, breadCrumbs, subtext }) => {
 }
 
 export const CollectionPageHeader = ({ title, collection, subtext }) => {
-    console.log(collection);
     return (
         <header className={styles.header}>
             <div className="container d-flex flex-column g-10">

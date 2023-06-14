@@ -20,8 +20,8 @@ import LoadingScreen from '@components/LoadingScreen';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Items = () => {
-    const { collection, tokens, isFetchingInitialData, isFetchingPage, myFetchNextPage, hasNextPage } = useExploreContext();
-    const pagination = usePagination(tokens, 12);
+    const { collection, tokens, isFetchingInitialData, isFetchingPage, fetchNextPage, hasNextPage } = useExploreContext();
+    const pagination = usePagination(tokens, 21);
     const isTablet = useWindowSize().width < 1024;
 
     return (
@@ -36,7 +36,7 @@ const Items = () => {
                 {isFetchingInitialData ? null :
                     <InfiniteScroll
                         dataLength={tokens.length}
-                        next={myFetchNextPage}
+                        next={fetchNextPage}
                         hasMore={hasNextPage}
                         style={{ overflow: 'hidden' }}
                     // loader={<h1>Loading</h1>}

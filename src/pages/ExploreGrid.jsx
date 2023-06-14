@@ -11,7 +11,7 @@ const ExploreGrid = () => {
     return (
         <>
             <Title title="Explore" />
-            <SimplePageHeader title="Explore" />
+            <SimplePageHeader title="컬렉션 검색 결과" />
             <main>
                 <ExploreGridContextAPI>
                     <FilterContextAPI>

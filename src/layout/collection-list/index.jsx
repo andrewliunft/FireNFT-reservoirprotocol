@@ -12,31 +12,25 @@ import CollectionsGrid from '@components/CollectionsGrid/index';
 import usePagination from '@hooks/usePagination';
 import { useExploreGridContext } from '@contexts/exploreGridContext';
 
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 // constants
-import { CATEGORIES, TYPE, STATUS, SORTING_OPTIONS, PRICE_RANGE } from '@constants/explore';
+// import { CATEGORIES, TYPE, STATUS, SORTING_OPTIONS, PRICE_RANGE } from '@constants/explore';
 
 const ExploreGridContent = () => {
     const {
-        tokens,
-        isLoading,
-        sort,
-        setSort,
-        sortedItems,
-        category,
-        setCategory,
-        status,
-        setStatus,
-        type,
-        setType,
-        priceRange,
-        setPriceRange
+        collections,
+        isFetchingInitialData,
+        isFetchingPage,
+        fetchNextPage,
+        hasNextPage,
     } = useExploreGridContext();
-    const pagination = usePagination(tokens, 20);
+    const pagination = usePagination(collections, 21);
 
     return (
         <div className="section mt-0">
             <div className="container d-flex flex-column g-30" ref={pagination.containerRef}>
-                <div className={styles.sorting}>
+                {/* <div className={styles.sorting}>
                     <div className={styles.select}>
                         <CustomSelect setSelected={setPriceRange}
                             options={PRICE_RANGE}
@@ -59,15 +53,21 @@ const ExploreGridContent = () => {
                             selected={sort} />
                     </div>
                     <span>{pagination.showingOf()}</span>
-                </div>
+                </div> */}
                 <div>
-                    {
-                        tokens.length > 0 ?
-                            <CollectionsGrid items={pagination.currentItems()} />
-                            : isLoading ? <LoadingScreen /> :
-                                <NothingFound />
-                    }
-                    {pagination.maxPage > 1 && <Pagination pagination={pagination} />}
+                    {isFetchingInitialData ? null :
+                        collections.length === 0 ?
+                            <NothingFound />
+                            : <InfiniteScroll
+                                dataLength={collections.length}
+                                next={fetchNextPage}
+                                hasMore={hasNextPage}
+                                style={{ overflow: 'hidden' }}
+                            // loader={<h1>Loading</h1>}
+                            // endMessage={<h1>Done</h1>}
+                            >
+                                <CollectionsGrid className={styles.grid} items={collections} />
+                            </InfiniteScroll>}
                 </div>
             </div>
         </div>

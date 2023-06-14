@@ -8,13 +8,12 @@ import Spring from '@components/Spring';
 
 // hooks
 import { usePaperSdkContext } from '@contexts/paperSdkContext';
-import { formatNumberKorean } from '@utils/helpers';
+import { USD_TO_KRW, formatNumberKorean } from '@utils/helpers';
 
 
 const ItemsGridItem = ({ item, index }) => {
     const { market, token } = item;
-    const { click } = usePaperSdkContext();
-    const USD_TO_KRW = process.env.REACT_APP_USD_TO_KRW;
+    const { onClickPurchase } = usePaperSdkContext();
 
     if (market.floorAsk.price === null) {
         return null;
@@ -44,7 +43,7 @@ const ItemsGridItem = ({ item, index }) => {
                     <div className="d-flex justify-content-between">
                         <button className={`${styles.main_btn} text-accent text-sm link-hover link-hover--invert`}
                             onClick={() => {
-                                click(token.contract, token.tokenId, market.floorAsk.source.domain)
+                                onClickPurchase(token.contract, token.tokenId, market.floorAsk.source.domain)
                             }}>
                             바로 구매
                         </button>

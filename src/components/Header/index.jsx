@@ -38,7 +38,7 @@ const MenuTrigger = ({ handler }) => {
 
 const LogoutButton = () => {
     const { isLogged, setIsLogged } = useAuth();
-    const { sdk } = usePaperSdkContext();
+    const { sdk, setUser } = usePaperSdkContext();
 
     return (
         <>
@@ -48,7 +48,8 @@ const LogoutButton = () => {
                         aria-label="Logout"
                         onClick={() => {
                             setIsLogged(false);
-                            localStorage.removeItem('user')
+                            localStorage.removeItem('user');
+                            setUser(null);
                             sdk.auth.logout();
                         }}
                         style={{ alignSelf: 'center' }}>
@@ -69,7 +70,6 @@ const CompactHeaderContent = ({ sidebarHandler, modal, modalHandler }) => {
             <button className="btn btn--icon" onClick={() => modalHandler(true)} aria-label="Search">
                 <i className="icon icon-search-regular" />
             </button>
-            {!isLogged && LogInButton(sdk, user, setUser, setIsLogged)}
             <MenuTrigger handler={sidebarHandler} />
             <StyledModal open={modal} onClose={() => modalHandler(false)}>
                 <SearchForm className="field--outline" placeholder={placeholder} />
@@ -79,7 +79,7 @@ const CompactHeaderContent = ({ sidebarHandler, modal, modalHandler }) => {
     )
 }
 
-export const LogInButton = (sdk, user, setUser, setIsLogged) => {
+export const LogInButton = (sdk, setUser, setIsLogged) => {
     return (
         <GradientBtn onClick={async () => {
             await sdk.auth.loginWithPaperModal()
@@ -115,7 +115,7 @@ const TabletHeaderContent = ({ width, handler }) => {
             <div className="form-wrapper">
                 <SearchForm className="search" placeholder={placeholder} />
             </div>
-            {!isLogged && LogInButton(sdk, user, setUser, setIsLogged)}
+            {!isLogged && LogInButton(sdk, setUser, setIsLogged)}
             <div className="d-flex g-20">
                 {width < 1440 && <MenuTrigger handler={handler} />}
                 <LogoutButton />

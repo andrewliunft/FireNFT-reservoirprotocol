@@ -4,9 +4,7 @@ import Fade from '@mui/material/Fade';
 import CryptoIcon from '@ui/CryptoIcon';
 
 // utils
-import { addZero, formatNumber, formatNumberKorean } from '@utils/helpers';
-
-const USD_TO_KRW = process.env.REACT_APP_USD_TO_KRW;
+import { USD_TO_KRW, addZero, formatNumber, formatNumberKorean } from '@utils/helpers';
 
 export const getPeriod = (period, value, average = false, rate = 1) => {
     const dayValue = value.day * rate;

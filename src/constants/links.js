@@ -76,7 +76,7 @@ export const FOOTER_LINKS = [
         links: [
             {
                 title: '자주하는 질문 FAQ',
-                url: 'https://fire-nft.gitbook.io/firenft/'
+                url: 'https://fire-nft.gitbook.io/firenft/cs/faq'
             },
             // {
             //     title: 'Activity',

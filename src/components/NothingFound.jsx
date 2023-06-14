@@ -1,5 +1,5 @@
 // utils
-import {lazy} from 'react';
+import { lazy } from 'react';
 
 // styling
 import styled from 'styled-components/macro';
@@ -20,14 +20,14 @@ const Wrapper = styled.div`
 `;
 
 const NothingFound = () => {
-    return (
-        <Fade in={true} timeout={1000}>
-            <Wrapper className="d-flex flex-column align-items-center">
-                <Lottie className="lottie" animationData={animation}/>
-                <h4 className="title">Sorry, nothing found</h4>
-            </Wrapper>
-        </Fade>
-    );
+  return (
+    <Fade in={true} timeout={1000}>
+      <Wrapper className="d-flex flex-column align-items-center">
+        <Lottie className="lottie" animationData={animation} />
+        <h4 className="title">검색 결과가 없습니다</h4>
+      </Wrapper>
+    </Fade>
+  );
 }
 
 export default NothingFound

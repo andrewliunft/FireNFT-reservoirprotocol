@@ -84,7 +84,7 @@ export const PaperSdkContextProvider = ({ children }) => {
     }
   };
 
-  const click = async (collectionContractAddress, tokenID, marketplaceSource) => {
+  const onClickPurchase = async (collectionContractAddress, tokenID, marketplaceSource) => {
     if (user === null) {
       toast.info("로그인이 필요합니다.");
       await sdk.auth.loginWithPaperModal();
@@ -119,7 +119,7 @@ export const PaperSdkContextProvider = ({ children }) => {
       openPurchaseModal,
       closePurchaseModal,
       sdkClientSecret,
-      click,
+      onClickPurchase,
     }}>
       {children}
     </PaperSdkContext.Provider>

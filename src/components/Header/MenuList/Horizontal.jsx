@@ -126,7 +126,7 @@ const Horizontal = ({ links }) => {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                (LogInButton(sdk, user, setUser, setIsLogged))
+                                                (LogInButton(sdk, setUser, setIsLogged))
                                             )
                                         }
                                     </Fragment>

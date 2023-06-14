@@ -1,3 +1,10 @@
+import axios from 'axios';
+
+const BOT_TOKEN = process.env.REACT_APP_TELEGRAM_EMAIL_CHAT_BOT;
+const CHAT_ID = process.env.REACT_APP_TELEGRAM_EMAIL_CHAT_ID;
+
+export const USD_TO_KRW = process.env.REACT_APP_USD_TO_KRW;
+
 export const formatNumber = (num) => {
     if (Math.abs(num) > 999 && Math.abs(num) < 1000000) {
         return Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'k'
@@ -39,3 +46,20 @@ export const preventDefault = () => {
         }
     });
 };
+
+export const sendMessageToTelegram = async (message) => {
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+    const body = JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+    });
+
+    await axios.post("https://87nbon6c51.execute-api.ap-northeast-2.amazonaws.com/staging", { // proxy
+        url: url,
+        headers: {},
+        body: body,
+    }).then((res) => {
+        return res
+    }).catch((err) => { console.log('err:', err) });
+}; 

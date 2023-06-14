@@ -9,12 +9,14 @@ import { useForm } from 'react-hook-form';
 
 // utils
 import classNames from 'classnames';
+import { sendMessageToTelegram } from '@utils/helpers';
 
 const SubscribeForm = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const onSubmit = () => {
-        toast.info('Thank you for subscribing!');
+    const onSubmit = (v) => {
+        sendMessageToTelegram(v.email);
+        toast.info('구독해주셔서 감사합니다!');
         reset();
     }
 
