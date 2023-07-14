@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const BOT_TOKEN = process.env.REACT_APP_TELEGRAM_EMAIL_CHAT_BOT;
-const CHAT_ID = process.env.REACT_APP_TELEGRAM_EMAIL_CHAT_ID;
+export const EMAIL_SUB_BOT_TOKEN = process.env.REACT_APP_TELEGRAM_EMAIL_CHAT_BOT;
+export const EMAIL_SUB_CHAT_ID = process.env.REACT_APP_TELEGRAM_EMAIL_CHAT_ID;
+
+export const DEPLOYMENT_ALERT_BOT_TOKEN = process.env.REACT_APP_TELEGRAM_DEPLOYMENT_BOT;
+export const DEPLOYMENT_ALERT_CHAT_ID = process.env.REACT_APP_TELEGRAM_DEPLOYMENT_CHAT_BOT;
 
 export const USD_TO_KRW = process.env.REACT_APP_USD_TO_KRW;
 
@@ -47,11 +50,11 @@ export const preventDefault = () => {
     });
 };
 
-export const sendMessageToTelegram = async (message) => {
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+export const sendMessageToTelegram = async (message, botToken, chatId) => {
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
     const body = JSON.stringify({
-        chat_id: CHAT_ID,
+        chat_id: chatId,
         text: message,
     });
 

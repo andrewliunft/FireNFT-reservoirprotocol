@@ -77,7 +77,8 @@
     "start": "craco start",
     "build": "craco build",
     "gzip": "craco build && compress-cra",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "node scripts/postbuild.js"
   },
   "eslintConfig": {
     "extends": [
