@@ -21,7 +21,9 @@ const ItemsGridItem = ({ item, index }) => {
 
     return (
         <Spring index={index}>
-            <div className={`${styles.wrapper} border-hover bg-primary`}>
+            <div className={`${styles.wrapper} border-hover bg-primary`} style={{ 'cursor': 'pointer' }} onClick={() => {
+                onClickPurchase(token.contract, token.tokenId, market.floorAsk.source.domain)
+            }}>
                 <div className={`${styles.media} square border-10`}>
                     <LazyImage src={token.image} alt={token.name} />
                 </div>
@@ -41,10 +43,7 @@ const ItemsGridItem = ({ item, index }) => {
                         </div>
                     </div>
                     <div className="d-flex justify-content-between">
-                        <button className={`${styles.main_btn} text-accent text-sm link-hover link-hover--invert`}
-                            onClick={() => {
-                                onClickPurchase(token.contract, token.tokenId, market.floorAsk.source.domain)
-                            }}>
+                        <button className={`${styles.main_btn} text-accent text-sm link-hover link-hover--invert`}>
                             바로 구매
                         </button>
                     </div>

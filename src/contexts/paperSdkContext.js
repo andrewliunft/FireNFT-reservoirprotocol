@@ -50,7 +50,7 @@ export const PaperSdkContextProvider = ({ children }) => {
     const body = JSON.stringify({
       contractId: CHECKOUT_CONTRACT_ID,
       walletAddress: user.walletAddress,
-      title: "FireNFT Purchase",
+      title: "FireNFT 바로구매",
       email: user.email,
       contractArgs: {
         nfts: [{
@@ -59,7 +59,6 @@ export const PaperSdkContextProvider = ({ children }) => {
           tokenId: tokenId,
           marketplaceSource: marketplaceSource
         }]
-        // nfts: [{ token: collectionContractAddress.slice(2) + ":" + tokenId }]
       },
     })
 

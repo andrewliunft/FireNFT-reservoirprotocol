@@ -113,17 +113,19 @@ const Horizontal = ({ links }) => {
                                         {
                                             isLogged ? (
                                                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                    <UserLink style={{ marginRight: '10px' }}>
-                                                        <i className="icon icon-user" />
+                                                    <UserLink style={{ marginRight: '10px' }} className='btn btn--outline' onClick={() => {
+
+                                                    }}>
+                                                        <i className="icon icon-user" style={{ marginLeft: '10px', marginRight: '20px' }} />
+                                                        <div>
+                                                            <div>
+                                                                {user.authDetails.email}
+                                                            </div>
+                                                            <div>
+                                                                {user.walletAddress.slice(0, 8)}...
+                                                            </div>
+                                                        </div>
                                                     </UserLink>
-                                                    <div>
-                                                        <div>
-                                                            {user.authDetails.email}
-                                                        </div>
-                                                        <div>
-                                                            {user.walletAddress.slice(0, 8)}...
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             ) : (
                                                 (LogInButton(sdk, setUser, setIsLogged))

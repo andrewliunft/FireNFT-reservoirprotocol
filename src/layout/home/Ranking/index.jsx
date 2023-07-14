@@ -1,16 +1,5 @@
 // styled components
 import StyledTable from './style';
-
-// components
-import {
-    gridPageCountSelector,
-    gridPageSelector,
-    useGridApiContext,
-    useGridSelector,
-} from '@mui/x-data-grid';
-import Pagination from '@ui/Pagination';
-import SectionHeader from '@components/SectionHeader';
-import CustomSelect from '@ui/CustomSelect';
 import StyledTabs from '@ui/StyledTabs';
 import Grid from '@mui/material/Grid';
 
@@ -21,15 +10,11 @@ import { COLUMNS } from '@constants/ranking';
 import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// data placeholder
-import ranking from '@db/ranking';
-
 // data
 import { useCollections } from '@reservoir0x/reservoir-kit-ui';
 import { useHotTokensContext } from '@contexts/hotTokensContext';
 
 const Ranking = ({ rankingRef, period, category, type }) => {
-    const dataByCategory = category.value === 'all' ? ranking : ranking.filter(item => item.categories && item.categories.includes(category.value));
     const navigate = useNavigate();
     const handleRowClick = (params, event) => {
         navigate(`/collection/${params.row.id}`)
@@ -45,7 +30,7 @@ const Ranking = ({ rankingRef, period, category, type }) => {
     }
 
     const { data, isValidating } = useCollections(collectionQuery, { fallbackData: [] });
-    const { hotTokens, isLoading } = useHotTokensContext();
+    const { hotTokens, isLoadingHotTokens } = useHotTokensContext();
 
     let volumeRankData = data.map((item, idx) => {
         return {
@@ -94,30 +79,6 @@ const Ranking = ({ rankingRef, period, category, type }) => {
             }
         }
     })
-
-    const LongRankingTable = (data) => {
-        return (
-            <Grid container spacing={4}>
-                <Grid item xs={6}>
-                    <StyledTable
-                        onRowClick={handleRowClick}
-                        rows={data.slice(5, 10)}
-                        columns={COLUMNS(period, category, type)}
-                        disableSelectionOnClick
-                        disableColumnMenu
-                        hideFooterPagination
-                        hideFooterSelectedRowCount
-                        autoHeight
-                        rowHeight={90}
-                        headerHeight={30}
-                        classes={{
-                            columnHeader: 'h6',
-                        }}
-                        loading={isValidating} />
-                </Grid>
-            </Grid>
-        )
-    }
 
     const RankingTable = (data) => {
         return (

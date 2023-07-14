@@ -48,6 +48,8 @@ const FooterNav = () => {
 }
 
 const Footer = () => {
+    const buildDate = process.env.BUILD_DATE;
+
     return (
         <footer className={styles.footer}>
             <div className="container">
@@ -76,23 +78,15 @@ const Footer = () => {
                         </nav>
                     </div>
                 </div>
-                {/* <div className={styles.secondary}>
-                    <p className={styles.copyright}>
-                        <a href="https://1.envato.market/tf-merkulove" target="_blank" rel="noreferrer noopener">
-                            Merkulove
-                        </a>
-                        © {new Date().getFullYear()} Xchain template. All rights reserved.
-                    </p>
-                    <div className="secondary__links d-flex g-10">
-                        <a href="https://1.envato.market/tf-merkulove" target="_blank" rel="noreferrer noopener">
-                            Privacy policy
-                        </a>
-                        <span className="secondary__links__divider">|</span>
-                        <a href="https://1.envato.market/tf-merkulove" target="_blank" rel="noreferrer noopener">
-                            Terms of service
-                        </a>
-                    </div>
-                </div> */}
+                {
+                    (buildDate) ?
+                        <div className={styles.secondary}>
+                            <p className={styles.copyright}>
+                                최신 업데이트: {Date(buildDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+                            </p>
+                        </div>
+                        : null
+                }
             </div>
         </footer>
     )

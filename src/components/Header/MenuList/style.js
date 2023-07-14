@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import {StyledAccordionDetails} from '@ui/StyledAccordion';
+import { StyledAccordionDetails } from '@ui/StyledAccordion';
 
 export const NavWrapper = styled.div`
   display: flex;
@@ -96,10 +96,11 @@ export const Dropdown = styled.div`
 `;
 
 export const UserLink = styled.div`
-  border-radius: 50% !important;
+  /* border-radius: 5px; */
   cursor: pointer;
-  width: var(--elements-height);
-  height: var(--elements-height);
+  /* width: var(--elements-height); */
+  /* height: var(--elements-height); */
+  padding: 10px;
   color: var(--text);
   display: flex;
   align-items: center;

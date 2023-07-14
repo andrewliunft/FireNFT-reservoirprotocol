@@ -25,6 +25,7 @@ const StyledTabsList = styled(TabsList)`
 
 const StyledTab = styled(Tab)`
   text-align: center;
+  word-break: keep-all;
   color: var(--text);
   font-size: 30px;
   font-weight: 600;

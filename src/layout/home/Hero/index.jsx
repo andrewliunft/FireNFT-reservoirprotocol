@@ -18,9 +18,9 @@ import video from '@assets/home/hero/particles.mp4';
 import { useHotTokensContext } from '@contexts/hotTokensContext';
 
 const Hero = ({ rankingRef }) => {
-    const { hotTokens, isLoading } = useHotTokensContext();
+    const { bannerTokens, isLoadingBannerTokens } = useHotTokensContext();
 
-    if (isLoading) return null;
+    if (isLoadingBannerTokens) return null;
 
     return (
         <section className={styles.hero}>
@@ -50,7 +50,7 @@ const Hero = ({ rankingRef }) => {
                             horizontalClass: styles.pagination
                         }}>
                         {
-                            hotTokens.slice(0, 4).map((item, idx) => (
+                            bannerTokens.map((item, idx) => (
                                 < SwiperSlide key={idx} >
                                     <div className="d-flex flex-column g-30">
                                         <div>

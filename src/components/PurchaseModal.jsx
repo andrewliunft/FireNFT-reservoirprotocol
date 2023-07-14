@@ -25,7 +25,7 @@ const PurchaseModal = () => {
             colorPrimary: '#ececec',
             colorText: '#f9f9f9',
             borderRadius: 6,
-            inputBackgroundColor: '#facdcd',
+            inputBackgroundColor: '#ececec',
             inputBorderColor: '#331c1c',
           }}
         />
