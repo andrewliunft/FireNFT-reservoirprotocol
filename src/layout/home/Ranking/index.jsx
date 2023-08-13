@@ -72,7 +72,7 @@ const Ranking = ({ rankingRef, period, category, type }) => {
                 month: item.volume['30day'],
             },
             floor: {
-                day: item.floorAsk.price.amount.usd,
+                day: item.floorAsk.price?.amount.usd,
                 // day: item.floorSale['1day'],
                 // week: item.floorSale['7day'],
                 // month: item.floorSale['30day'],
